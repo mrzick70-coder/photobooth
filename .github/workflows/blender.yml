@@ -1,0 +1,70 @@
+name: Blender render
+
+# Runs on the self-hosted Windows runner (label "blender") that has Blender installed.
+# Triggers: push of a script under blender/scripts/, or manual run with a chosen script.
+on:
+  push:
+    paths:
+      - "blender/scripts/**"
+      - ".github/workflows/blender.yml"
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "Script under blender/scripts/ to run"
+        required: true
+        default: "render_sample.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blender-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: [self-hosted, windows, blender]
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find Blender
+        run: |
+          $exe = "${{ vars.BLENDER_EXE }}"
+          if (-not $exe) {
+            $exe = Get-ChildItem "C:\Program Files\Blender Foundation\*\blender.exe" -ErrorAction SilentlyContinue |
+              Sort-Object FullName | Select-Object -Last 1 -ExpandProperty FullName
+          }
+          if (-not $exe -or -not (Test-Path $exe)) { throw "Blender not found. Install it or set repo variable BLENDER_EXE." }
+          Write-Host "Using $exe"
+          & $exe --version
+          "BLENDER=$exe" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Run script
+        run: |
+          $script = "${{ github.event.inputs.script }}"
+          if (-not $script) { $script = "render_sample.py" }
+          $out = Join-Path $env:GITHUB_WORKSPACE "blender\output"
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          & $env:BLENDER -b --factory-startup -P "blender\scripts\$script" -- --out "$out"
+          if ($LASTEXITCODE -ne 0) { throw "Blender exited with code $LASTEXITCODE" }
+          Get-ChildItem $out
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: renders-${{ github.run_number }}
+          path: blender/output/
+
+      - name: Commit renders back to the branch
+        if: github.ref_type == 'branch'
+        run: |
+          git config user.name "blender-runner"
+          git config user.email "blender-runner@users.noreply.github.com"
+          git add blender/output
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 0) { Write-Host "No new renders"; exit 0 }
+          git commit -m "Add Blender renders from run ${{ github.run_number }} [skip ci]"
+          git push origin "HEAD:${{ github.ref_name }}"
