@@ -12,10 +12,13 @@ Run: blender -b -P blender/scripts/apply_palette.py -- --blend <file.blend> --ou
 """
 import argparse
 import json
+import math
 import os
 import sys
 
 import bpy
+import bmesh  # after bpy: the standalone bpy module registers bmesh on import
+from mathutils import Matrix, Vector
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import fix_scene as fx  # noqa: E402
@@ -62,6 +65,10 @@ PLAN_CAMERAS = ("Cam_05_mat_bang", "Cam_07_mat_bang_den")
 DOWNLIGHT_BOOST = 1.33  # ~1,800 lm -> ~2,400 lm fittings
 BOOTH_FLASH_BOOST = 6.0  # the booth interior rendered grey; a photo booth is lit bright
 EXPOSURE = 0.5  # AgX renders mid-tones darker than Standard
+# Hollywood mirror: globe bulbs on brass sockets, mounted on the mirror frame.
+MIRROR_BULB_DIAMETER = 0.05  # G16.5-style globe
+SOCKET_LENGTH = 0.02
+SOCKET_RADIUS = 0.011
 FULL_RES = True  # 100% of the file resolution (1600x1000); False renders quick 50% previews
 
 
@@ -187,6 +194,98 @@ def boost_downlights(scene):
     fx.log(f"downlights x{DOWNLIGHT_BOOST}")
 
 
+def mat_frosted_bulb():
+    mat, bsdf = fx.new_material("PB_Bulb_Frosted")
+    nodes, links = mat.node_tree.nodes, mat.node_tree.links
+    bsdf.inputs["Base Color"].default_value = fx.hex_rgba("#FFF4E6")
+    bsdf.inputs["Roughness"].default_value = 0.35
+    fx.set_input(bsdf, ["Emission Color", "Emission"], (1.0, 0.72, 0.45, 1.0))
+    # Brighter where the globe faces the viewer, dimmer at the rim, so it reads as a sphere.
+    weight = nodes.new("ShaderNodeLayerWeight")
+    weight.inputs["Blend"].default_value = 0.5
+    ramp = nodes.new("ShaderNodeMapRange")
+    ramp.inputs["To Min"].default_value = 8.0
+    ramp.inputs["To Max"].default_value = 2.0
+    links.new(weight.outputs["Facing"], ramp.inputs["Value"])
+    links.new(ramp.outputs["Result"], bsdf.inputs["Emission Strength"])
+    return mat
+
+
+def smooth_mesh(name, build):
+    me = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    build(bm)
+    bm.to_mesh(me)
+    bm.free()
+    for poly in me.polygons:
+        poly.use_smooth = True
+    return me
+
+
+def mount_mirror_bulbs(scene, room_center):
+    """Replace the bulbs floating on the wall with globe bulbs on sockets fixed to the mirror frame."""
+    frame = scene.objects.get("D_Mirror_Frame")
+    glass = scene.objects.get("D_Mirror_Glass")
+    old = sorted((o for o in scene.objects if o.name.startswith("D_Bulb")), key=lambda o: o.name)
+    if not frame or not glass or not old:
+        fx.log("mirror bulbs: frame, glass or bulbs not found, skipped")
+        return
+    count, parent, coll = len(old), old[0].parent, old[0].users_collection[0]
+
+    lo, hi = fx.bbox_world([frame])
+    center, dims = (lo + hi) / 2, hi - lo
+    axis = min(range(3), key=lambda i: dims[i])  # frame thickness = mirror normal
+    normal = Vector((0.0, 0.0, 0.0))
+    normal[axis] = 1.0 if room_center[axis] > center[axis] else -1.0
+    u_i, v_i = [i for i in range(3) if i != axis]
+    u, v = Vector((0.0, 0.0, 0.0)), Vector((0.0, 0.0, 0.0))
+    u[u_i], v[v_i] = 1.0, 1.0
+    glo, ghi = fx.bbox_world([glass])
+    outer = min(dims[u_i], dims[v_i]) / 2
+    inner = min(ghi[u_i] - glo[u_i], ghi[v_i] - glo[v_i]) / 2
+    ring = (outer + inner) / 2  # middle of the frame band, between glass edge and frame edge
+    face = center + normal * (dims[axis] / 2)
+    table = scene.objects.get("D_Table_Top")
+    table_top = fx.bbox_world([table])[1].z if table else -1e9
+
+    for o in old:
+        bpy.data.objects.remove(o, do_unlink=True)
+
+    radius = MIRROR_BULB_DIAMETER / 2
+    bulb_me = smooth_mesh("PB_MirrorBulb", lambda bm: bmesh.ops.create_uvsphere(
+        bm, u_segments=32, v_segments=16, radius=radius))
+    bulb_me.materials.append(mat_frosted_bulb())
+
+    def socket(bm):
+        bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=24,
+                              radius1=SOCKET_RADIUS, radius2=SOCKET_RADIUS, depth=SOCKET_LENGTH)
+        bmesh.ops.translate(bm, verts=bm.verts, vec=(0.0, 0.0, SOCKET_LENGTH / 2))
+    socket_me = smooth_mesh("PB_MirrorSocket", socket)
+    socket_me.materials.append(fx.mat_brass())
+
+    rot = normal.to_track_quat("Z", "Y").to_matrix().to_4x4()
+    placed = skipped = 0
+    for i in range(count):
+        t = math.pi / 2 + 2 * math.pi * i / count  # start at the top, go round evenly
+        base = face + (u * math.cos(t) + v * math.sin(t)) * ring
+        bulb_center = base + normal * (SOCKET_LENGTH + radius * 0.85)
+        if bulb_center.z - radius < table_top + 0.01:
+            skipped += 1  # would sit inside the vanity top
+            continue
+        sock = bpy.data.objects.new(f"D_BulbSocket{i:02d}", socket_me)
+        sock.matrix_world = Matrix.Translation(base) @ rot
+        bulb = bpy.data.objects.new(f"D_Bulb{i:02d}", bulb_me)
+        bulb.matrix_world = Matrix.Translation(bulb_center)
+        for o in (sock, bulb):
+            coll.objects.link(o)
+            if parent:
+                o.parent = parent
+                o.matrix_parent_inverse = parent.matrix_world.inverted()
+        placed += 1
+    fx.log(f"mirror bulbs: {placed} globe bulbs on brass sockets, ring r={ring:.3f} m on the frame "
+           f"(frame r={outer:.3f}, glass r={inner:.3f}), {skipped} skipped at the vanity top")
+
+
 def visible_blind(scene):
     return next((o for o in scene.objects
                  if o.name.startswith("F_Rem_") and o.name.endswith("_Spread") and not o.hide_render), None)
@@ -217,6 +316,8 @@ def main():
     for (rem, bar, _), color in zip(BLINDS, pal["blinds"]):
         recolor(rem, color)
         recolor(bar, darker(color, 0.7))
+    walls = [scene.objects[n] for n in fx.ROLES["walls"] if n in scene.objects]
+    mount_mirror_bulbs(scene, sum(fx.bbox_world(walls), Vector()) / 2 if walls else Vector())
 
     base, ext = os.path.splitext(args.blend)
     target = f"{base}_{args.palette}{ext}"
