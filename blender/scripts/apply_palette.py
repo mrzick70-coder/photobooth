@@ -53,7 +53,7 @@ PALETTES = {
         "blinds": ["#F2F0EC", "#E6C3BE", "#2A2928"],
         "skirting": "#5A1E26", "booth_shell": "#5A1E26", "floor_checker": True,
         "brass_objects": ["D_Mirror_Frame"], "hide_prefixes": ["C_"],
-        "checker_tile": 0.5, "review_fixes": True,
+        "checker_tile": 0.5, "review_fixes": True, "sofa_model": "kidney",
     },
 }
 # Design review of the cherry concept (see apply_review_fixes).
@@ -326,6 +326,8 @@ def apply_extras(scene, pal):
         fx.log(f"hidden: {hidden}")
     if pal.get("review_fixes"):
         apply_review_fixes(scene)
+    if pal.get("sofa_model") == "kidney":
+        build_kidney_sofa(scene)
 
 
 def scale_mesh_verts(obj, fn):
@@ -433,6 +435,132 @@ def add_entrance_wall(scene):
     cam.location = (2.6, -0.6, 1.5)
     cam.rotation_euler = (math.radians(88), 0.0, math.radians(180))
     coll.objects.link(cam)
+
+
+# Kidney bouclé sofa (client reference photo): bean-shaped seat, a curved back that wraps the seat and
+# steps down towards the right end, a rolled bolster arm on the left. No loose cushions.
+KIDNEY = {
+    "arc_radius": 1.0,      # seat centreline radius; the centre of curvature sits in front of the sofa
+    "half_angle": 30.0,     # degrees either side of the middle -> ~1.64 m wide with the round ends
+    "seat": (0.64, 0.40),   # seat depth x height (m)
+    "back": (0.26, 0.60),   # backrest thickness; its bottom is buried in the seat
+    "back_top": 0.76,       # backrest top above the floor
+    "arm_radius": 0.16,     # rolled arm bolster
+}
+
+
+def stadium_outline(center, half_w, cap_segments=12):
+    """Closed 2D outline of a band of half-width half_w around a centreline, with round ends."""
+    def normal(i):
+        p0 = center[max(i - 1, 0)]
+        p1 = center[min(i + 1, len(center) - 1)]
+        tx, ty = p1[0] - p0[0], p1[1] - p0[1]
+        ln = math.hypot(tx, ty)
+        return -ty / ln, tx / ln
+
+    left, right = [], []
+    for i, (x, y) in enumerate(center):
+        nx, ny = normal(i)
+        left.append((x + nx * half_w, y + ny * half_w))
+        right.append((x - nx * half_w, y - ny * half_w))
+
+    def cap(i, start_angle):
+        x, y = center[i]
+        return [(x + half_w * math.cos(start_angle - math.pi * j / cap_segments),
+                 y + half_w * math.sin(start_angle - math.pi * j / cap_segments))
+                for j in range(1, cap_segments)]
+
+    nx, ny = normal(len(center) - 1)
+    end_cap = cap(len(center) - 1, math.atan2(ny, nx))
+    nx, ny = normal(0)
+    start_cap = cap(0, math.atan2(-ny, -nx))
+    return left + end_cap + right[::-1] + start_cap
+
+
+def soft_block(name, outline, z0, z1, bevel, coll, top_fn=None):
+    """Extrude an outline into an upholstered block: rounded top and bottom edges, optional top shaping."""
+    me = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    verts = [bm.verts.new((x, y, z0)) for x, y in outline]
+    face = bm.faces.new(verts)
+    ext = bmesh.ops.extrude_face_region(bm, geom=[face])
+    top = [e for e in ext["geom"] if isinstance(e, bmesh.types.BMVert)]
+    bmesh.ops.translate(bm, vec=(0.0, 0.0, z1 - z0), verts=top)
+    bm.normal_update()
+    caps = [f for f in bm.faces if len(f.verts) > 4]
+    edges = list({e for f in caps for e in f.edges})
+    bmesh.ops.bevel(bm, geom=edges, offset=bevel, segments=8, profile=0.5, affect="EDGES", clamp_overlap=True)
+    if top_fn:
+        for v in bm.verts:
+            v.co.z = top_fn(v.co)
+    ngons = [f for f in bm.faces if len(f.verts) > 4]
+    bmesh.ops.triangulate(bm, faces=ngons, quad_method="BEAUTY", ngon_method="BEAUTY")
+    bm.to_mesh(me)
+    bm.free()
+    for poly in me.polygons:
+        poly.use_smooth = True
+    obj = bpy.data.objects.new(name, me)
+    coll.objects.link(obj)
+    return obj
+
+
+def build_kidney_sofa(scene):
+    old = scene.objects.get("A_Sofa_Cloud")
+    if old is None:
+        fx.log("kidney sofa: A_Sofa_Cloud not found, skipped")
+        return
+    lo, hi = fx.bbox_world([old])
+    mat = old.material_slots[0].material if old.material_slots else flat_material("PB_Boucle", "#EDE4D8")
+    for o in [old] + list(old.children_recursive):
+        o.hide_render = o.hide_viewport = True
+    coll = bpy.data.collections.get("PB_Sofa_Kidney") or bpy.data.collections.new("PB_Sofa_Kidney")
+    if coll.name not in scene.collection.children:
+        scene.collection.children.link(coll)
+
+    k = KIDNEY
+    seat_d, seat_h = k["seat"]
+    back_t, back_h = k["back"]
+    r_seat = k["arc_radius"]
+    r_back = r_seat + seat_d / 2 - back_t / 2 + 0.02
+    cx = (lo.x + hi.x) / 2
+    cy = hi.y - 0.02 - (r_back + back_t / 2)  # centre of curvature, in front of the sofa
+    ha = math.radians(k["half_angle"])
+
+    def arc(r, a0, a1, n=40):
+        return [(cx + r * math.sin(a0 + (a1 - a0) * i / (n - 1)), cy + r * math.cos(a0 + (a1 - a0) * i / (n - 1)))
+                for i in range(n)]
+
+    seat = soft_block("PB_Kidney_Seat", stadium_outline(arc(r_seat, -ha, ha), seat_d / 2),
+                      0.0, seat_h, 0.14, coll)
+
+    # Back wraps the seat from the left arm and steps down over the right third.
+    b0, b1 = -ha, ha * 0.92
+    top = k["back_top"]
+
+    def back_top(co):
+        if co.z <= seat_h:
+            return co.z
+        a = math.atan2(co.x - cx, co.y - cy)
+        t = min(max((a - b0) / (b1 - b0), 0.0), 1.0)
+        taper = 1.0 if t < 0.55 else 1.0 - 0.6 * ((t - 0.55) / 0.45) ** 1.6
+        return seat_h + (co.z - seat_h) * taper
+
+    back = soft_block("PB_Kidney_Back", stadium_outline(arc(r_back, b0, b1), back_t / 2),
+                      seat_h - 0.2, top, back_t / 2 - 0.01, coll, back_top)
+
+    # Rolled arm: a bolster from the back to the front of the seat at the left end.
+    ar = k["arm_radius"]
+    a_arm = -ha
+    ux, uy = math.sin(a_arm), math.cos(a_arm)
+    r0, r1 = r_back, r_seat - seat_d / 2 + ar
+    arm_line = [(cx + ux * (r0 + (r1 - r0) * i / 7), cy + uy * (r0 + (r1 - r0) * i / 7)) for i in range(8)]
+    arm = soft_block("PB_Kidney_Arm", stadium_outline(arm_line, ar), seat_h - 0.2, top - 0.08, ar - 0.01, coll)
+
+    for o in (seat, back, arm):
+        o.data.materials.append(mat)
+    slo, shi = fx.bbox_world([seat, back, arm])
+    fx.log(f"kidney sofa: {shi.x - slo.x:.2f} m wide, {shi.y - slo.y:.2f} m deep, back {top} m, "
+           f"seat {seat_h} m; replaces A_Sofa_Cloud")
 
 
 def apply_review_fixes(scene):
