@@ -62,6 +62,7 @@ PLAN_CAMERAS = ("Cam_05_mat_bang", "Cam_07_mat_bang_den")
 DOWNLIGHT_BOOST = 1.33  # ~1,800 lm -> ~2,400 lm fittings
 BOOTH_FLASH_BOOST = 6.0  # the booth interior rendered grey; a photo booth is lit bright
 EXPOSURE = 0.5  # AgX renders mid-tones darker than Standard
+FULL_RES = True  # 100% of the file resolution (1600x1000); False renders quick 50% previews
 
 
 def parse_args():
@@ -223,9 +224,11 @@ def main():
     fx.log(f"saved {target}")
 
     if not args.no_render:
-        scene.render.resolution_percentage = 50
+        scene.render.resolution_percentage = 100 if FULL_RES else 50
         scene.render.image_settings.file_format = "JPEG"
-        scene.render.image_settings.quality = 88
+        scene.render.image_settings.quality = 95 if FULL_RES else 88
+        if FULL_RES and hasattr(scene, "eevee"):
+            scene.eevee.taa_render_samples = 128
         blind = visible_blind(scene)
         blind_for_cam = {cam: rem for rem, _, cam in BLINDS}
         cams = sorted(o.name for o in scene.objects if o.type == "CAMERA" and o.name not in PLAN_CAMERAS)
