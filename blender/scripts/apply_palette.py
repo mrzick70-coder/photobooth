@@ -70,13 +70,28 @@ PALETTES = {
         "review_fixes": True, "sofa_model": "kidney", "bench": False,
         "exposure": 0.0, "downlight_boost": 1.0,  # pale walls need no compensation for dark paint
     },
+    # Soft minimal (client inspiration: white clinic lounges): warm white walls and ceiling, light oak
+    # floor, oat linen curtain on a greige booth, cream boucle, plaster and light oak, black lettering.
+    # One statement pendant over a plaster table, cove light round the ceiling, an olive tree for colour.
+    "soft_minimal": {
+        "walls": "#F3F0EA", "ceiling": "#F7F5F1", "woodwork": "#F2EEE7", "sofa": "#EDE6DA",
+        "curtain": "#D9CCBA", "accent": "#1E1C1A", "accent_metal": False,
+        "blinds": ["#F2F0EC", "#E6D8CC", "#B9ADA0"],
+        "skirting": "#F3F0EA", "booth_shell": "#E4DCD1", "floor_oak": True,
+        "brass_objects": ["D_Mirror_Frame"],
+        "hide_prefixes": ["C_", *CLIENT_REMOVED, "A_Floor_Tube", "Room_Pendant"],
+        "review_fixes": True, "sofa_model": "kidney", "bench": False, "pay_point": False,
+        "neon_heart": False, "minimal_decor": True,
+        "light_color": (1.0, 0.8, 0.6),  # ~3000K: 2700K turns warm white walls peach
+        "exposure": 0.0, "downlight_boost": 1.0,
+    },
 }
 # Design review of the cherry concept (see apply_review_fixes).
 PENDANT_MIN_CLEARANCE = 2.1  # m above the floor for anything hanging over a walkway
 WARM_LIGHT = (1.0, 0.71, 0.42)  # ~2700K
 WARM_LIGHT_SKIP = ("Booth_Flash_Light",)  # the booth keeps neutral light for skin tones
 HEART_SCALE = 1.6  # the tallest heart that fits between the curtain head and the booth top
-DEFAULT_PALETTE = "cherry_light"
+DEFAULT_PALETTE = "soft_minimal"
 
 # Materials in the file, grouped by palette role.
 MATERIALS = {
@@ -328,6 +343,8 @@ def apply_extras(scene, pal):
         bsdf.inputs["Roughness"].default_value = 0.8
         shell = [scene.objects[n] for n in ("Booth_Shell_MDF", "Booth_Roof") if n in scene.objects]
         fx.assign(shell, mat, "booth shell")
+    if pal.get("floor_oak") and "Room_Floor" in scene.objects:
+        fx.assign([scene.objects["Room_Floor"]], mat_oak(), "floor")
     if pal.get("floor_checker") and "Room_Floor" in scene.objects:
         fx.assign([scene.objects["Room_Floor"]], fx.mat_checker(pal.get("checker_tile", 0.4)), "floor")
     brass = [scene.objects[n] for n in pal.get("brass_objects", []) if n in scene.objects]
@@ -343,6 +360,8 @@ def apply_extras(scene, pal):
         apply_review_fixes(scene, pal)
     if pal.get("sofa_model") == "kidney":
         build_kidney_sofa(scene)
+    if pal.get("minimal_decor"):
+        add_minimal_decor(scene, pal.get("light_color", WARM_LIGHT))
 
 
 def scale_mesh_verts(obj, fn):
@@ -442,11 +461,13 @@ def add_entrance_wall(scene, pal):
                 box(f"PB_Gallery_Photo{i:02d}_{j}", (x + 0.014, face_y + 0.018, cz + 0.004),
                     (x + fw - 0.014, face_y + 0.02, cz + cell - 0.002), tones[(i + j) % len(tones)], coll)
 
-    # QR pay point next to the booth: brass shelf and a black QR board.
-    box("PB_Pay_Shelf", (4.15, face_y, 1.0), (4.6, face_y + 0.22, 1.03), brass, coll)
-    box("PB_Pay_Board", (4.25, face_y + 0.02, 1.03), (4.5, face_y + 0.05, 1.33), black, coll)
-    box("PB_Pay_QR", (4.3, face_y + 0.05, 1.12), (4.45, face_y + 0.052, 1.27), paper, coll)
-    fx.log(f"entrance wall: bench={pal.get('bench', True)}, QR pay point, {count} gallery strips")
+    if pal.get("pay_point", True):
+        # QR pay point next to the booth: brass shelf and a black QR board.
+        box("PB_Pay_Shelf", (4.15, face_y, 1.0), (4.6, face_y + 0.22, 1.03), brass, coll)
+        box("PB_Pay_Board", (4.25, face_y + 0.02, 1.03), (4.5, face_y + 0.05, 1.33), black, coll)
+        box("PB_Pay_QR", (4.3, face_y + 0.05, 1.12), (4.45, face_y + 0.052, 1.27), paper, coll)
+    fx.log(f"entrance wall: bench={pal.get('bench', True)}, pay point={pal.get('pay_point', True)}, "
+           f"{count} gallery strips")
 
     cam_data = bpy.data.cameras.new("Cam_09_tuong_loi_vao")
     cam_data.lens = 16
@@ -454,6 +475,183 @@ def add_entrance_wall(scene, pal):
     cam.location = (cx, -0.6, 1.5)  # centred on the bench and brand name
     cam.rotation_euler = (math.radians(88), 0.0, math.radians(180))
     coll.objects.link(cam)
+
+
+def mat_oak():
+    """Light oak vinyl plank: 1.2 m x 0.19 m boards in a staggered pattern with a soft grain."""
+    mat, bsdf = fx.new_material("PB_Oak_Plank")
+    nodes, links = mat.node_tree.nodes, mat.node_tree.links
+    geo = nodes.new("ShaderNodeNewGeometry")
+    brick = nodes.new("ShaderNodeTexBrick")
+    brick.offset, brick.offset_frequency = 0.37, 1
+    brick.inputs["Color1"].default_value = fx.hex_rgba("#D9C6AB")
+    brick.inputs["Color2"].default_value = fx.hex_rgba("#CDB797")
+    brick.inputs["Mortar"].default_value = fx.hex_rgba("#B39B7E")
+    brick.inputs["Scale"].default_value = 1.0
+    brick.inputs["Mortar Size"].default_value = 0.0025
+    brick.inputs["Brick Width"].default_value = 1.2
+    brick.inputs["Row Height"].default_value = 0.19
+    links.new(geo.outputs["Position"], brick.inputs["Vector"])
+    grain = nodes.new("ShaderNodeTexWave")
+    grain.wave_type, grain.bands_direction = "BANDS", "Y"
+    grain.inputs["Scale"].default_value = 18.0
+    grain.inputs["Distortion"].default_value = 6.0
+    grain.inputs["Detail"].default_value = 3.0
+    links.new(geo.outputs["Position"], grain.inputs["Vector"])
+    mix = nodes.new("ShaderNodeMix")
+    mix.data_type, mix.blend_type = "RGBA", "MULTIPLY"
+    mix.inputs[0].default_value = 0.12
+    links.new(brick.outputs["Color"], mix.inputs[6])
+    links.new(grain.outputs["Color"], mix.inputs[7])
+    links.new(mix.outputs[2], bsdf.inputs["Base Color"])
+    bsdf.inputs["Roughness"].default_value = 0.42
+    add_bump = fx.add_bump
+    add_bump(mat, bsdf, brick, 0.15, 0.002)
+    return mat
+
+
+def mat_plaster(name, hex_color, bump=0.25, scale=6.0):
+    mat, bsdf = fx.new_material(name)
+    bsdf.inputs["Base Color"].default_value = fx.hex_rgba(hex_color)
+    bsdf.inputs["Roughness"].default_value = 0.9
+    noise = mat.node_tree.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = scale
+    noise.inputs["Detail"].default_value = 6.0
+    fx.add_bump(mat, bsdf, noise, bump, 0.004)
+    return mat
+
+
+def cylinder(name, center, r0, r1, z0, z1, mat, coll, caps=True, segments=48):
+    me = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    bmesh.ops.create_cone(bm, cap_ends=caps, cap_tris=False, segments=segments,
+                          radius1=r0, radius2=r1, depth=z1 - z0)
+    bmesh.ops.translate(bm, vec=(center[0], center[1], (z0 + z1) / 2), verts=bm.verts)
+    bm.to_mesh(me)
+    bm.free()
+    for poly in me.polygons:
+        poly.use_smooth = True
+    me.materials.append(mat)
+    obj = bpy.data.objects.new(name, me)
+    coll.objects.link(obj)
+    return obj
+
+
+def add_olive_tree(center, coll):
+    """Artificial olive tree in a ribbed stone-look pot (~1.8 m)."""
+    import random
+    rnd = random.Random(7)
+    pot = mat_plaster("PB_Pot_Stone", "#D8CDBE", 0.35, 18.0)
+    bark = flat_material("PB_Olive_Bark", "#4E4136", 0.8)
+    leaf, bsdf = fx.new_material("PB_Olive_Leaf")
+    bsdf.inputs["Base Color"].default_value = fx.hex_rgba("#65714F")
+    bsdf.inputs["Roughness"].default_value = 0.6
+    fx.set_input(bsdf, ["Subsurface Weight", "Subsurface"], 0.15)
+    x, y = center
+    cylinder("PB_Olive_Pot", (x, y), 0.17, 0.21, 0.0, 0.48, pot, coll)
+    cylinder("PB_Olive_Soil", (x, y), 0.19, 0.19, 0.44, 0.46, bark, coll)
+    tips = []
+    for i, (dx, dy, top) in enumerate(((0.0, 0.0, 1.35), (0.14, 0.05, 1.6), (-0.12, -0.04, 1.55))):
+        base = Vector((x + dx * 0.2, y + dy * 0.2, 0.45))
+        tip = Vector((x + dx, y + dy, top))
+        me = bpy.data.meshes.new(f"PB_Olive_Trunk{i}")
+        bm = bmesh.new()
+        length = (tip - base).length
+        bmesh.ops.create_cone(bm, cap_ends=True, segments=10, radius1=0.028 - i * 0.006, radius2=0.012,
+                              depth=length)
+        bm.to_mesh(me)
+        bm.free()
+        me.materials.append(bark)
+        trunk = bpy.data.objects.new(f"PB_Olive_Trunk{i}", me)
+        trunk.location = (base + tip) / 2
+        trunk.rotation_euler = (tip - base).to_track_quat("Z", "Y").to_euler()
+        coll.objects.link(trunk)
+        tips.append(tip)
+    me = bpy.data.meshes.new("PB_Olive_Leaves")
+    bm = bmesh.new()
+    for tip in tips:
+        for _ in range(320):
+            c = tip + Vector((rnd.gauss(0, 0.12), rnd.gauss(0, 0.12), rnd.gauss(0.04, 0.1)))
+            ret = bmesh.ops.create_icosphere(bm, subdivisions=1, radius=rnd.uniform(0.022, 0.034))
+            vs = ret["verts"]
+            bmesh.ops.scale(bm, vec=(1.0, 0.35, 0.18), verts=vs)  # long, narrow olive leaves
+            rot = Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1))).to_track_quat("X", "Z")
+            bmesh.ops.rotate(bm, cent=(0, 0, 0), matrix=rot.to_matrix(), verts=vs)
+            bmesh.ops.translate(bm, vec=c, verts=vs)
+    bm.to_mesh(me)
+    bm.free()
+    for poly in me.polygons:
+        poly.use_smooth = True
+    me.materials.append(leaf)
+    coll.objects.link(bpy.data.objects.new("PB_Olive_Leaves", me))
+
+
+def add_minimal_decor(scene, light_color):
+    """Soft-minimal styling: rug, plaster table, tiered fabric pendant, cove light, olive tree, plaster art."""
+    coll = bpy.data.collections.get("PB_Minimal") or bpy.data.collections.new("PB_Minimal")
+    if coll.name not in scene.collection.children:
+        scene.collection.children.link(coll)
+    sofa = [scene.objects[n] for n in ("PB_Kidney_Seat", "PB_Kidney_Back") if n in scene.objects]
+    slo, shi = fx.bbox_world(sofa) if sofa else (Vector((0.1, -0.8, 0)), Vector((1.7, 0.0, 0)))
+    sx = (slo.x + shi.x) / 2
+    front = slo.y
+
+    # Cream rug under the front of the sofa, clear of the entrance walkway (y > -1.7).
+    rug = mat_plaster("PB_Rug_Wool", "#ECE5D9", 0.5, 60.0)
+    box("PB_Rug", (sx - 0.85, front - 0.95, 0.0), (sx + 0.85, front + 0.25, 0.012), rug, coll)
+
+    # Round plaster pedestal table in front of the sofa (~40% of the sofa length).
+    plaster = mat_plaster("PB_Plaster_Table", "#EDE7DE")
+    tc = (sx, front - 0.45)
+    cylinder("PB_Table_Base", tc, 0.2, 0.16, 0.012, 0.40, plaster, coll)
+    cylinder("PB_Table_Top", tc, 0.33, 0.33, 0.40, 0.44, plaster, coll)
+
+    # Tiered fabric pendant over the table: the room's one decorative light.
+    fabric, bsdf = fx.new_material("PB_Fabric_Shade")
+    bsdf.inputs["Base Color"].default_value = fx.hex_rgba("#F4EFE7")
+    bsdf.inputs["Roughness"].default_value = 0.9
+    fx.set_input(bsdf, ["Emission Color", "Emission"], (1.0, 0.8, 0.6, 1.0))
+    fx.set_input(bsdf, ["Emission Strength"], 0.3)
+    for i, (r, z0, z1) in enumerate(((0.32, 2.02, 2.15), (0.25, 2.12, 2.24), (0.18, 2.21, 2.31))):
+        cylinder(f"PB_Pendant_Tier{i}", tc, r, r, z0, z1, fabric, coll, caps=False)
+    cord = flat_material("PB_Cord", "#2A2522", 0.5)
+    cylinder("PB_Pendant_Cord", tc, 0.004, 0.004, 2.31, 3.0, cord, coll, segments=8)
+    cylinder("PB_Pendant_Canopy", tc, 0.06, 0.06, 2.97, 3.0, plaster, coll)
+    fx.add_light("PB_Pendant_Glow", "POINT", (tc[0], tc[1], 2.16), 45, color=light_color, shadow_soft_size=0.15)
+
+    # Cove light round the ceiling perimeter, as in a lit tray ceiling.
+    walls = [scene.objects[n] for n in fx.ROLES["walls"] if n in scene.objects]
+    ceiling = scene.objects.get("Room_Ceiling")
+    if walls and ceiling:
+        wlo, whi = fx.bbox_world(walls)
+        fx.add_cove_lights(fx.bbox_world([ceiling])[0].z, wlo, whi)
+        for o in scene.objects:
+            if o.name.startswith("PB_Cove_"):
+                o.data.color = light_color
+                o.data.energy *= 0.35
+
+    # Olive tree beside the sofa against the left wall, as in the inspiration. The entrance wall is
+    # where most cameras stand, and the doorway starts at y = -1.73.
+    add_olive_tree((0.25, -1.35), coll)
+
+    # Wall art above the sofa becomes cream plaster relief in light oak frames.
+    oak = flat_material("PB_Oak_Frame", "#C9B08E", 0.5)
+    relief, rb = fx.new_material("PB_Plaster_Relief")
+    rb.inputs["Base Color"].default_value = fx.hex_rgba("#EFEAE2")
+    rb.inputs["Roughness"].default_value = 0.9
+    loops = relief.node_tree.nodes.new("ShaderNodeTexWave")  # looping raised lines, as in the inspiration
+    loops.wave_type, loops.wave_profile = "RINGS", "SIN"
+    loops.inputs["Scale"].default_value = 6.0
+    loops.inputs["Distortion"].default_value = 9.0
+    loops.inputs["Detail"].default_value = 1.0
+    fx.add_bump(relief, rb, loops, 1.0, 0.01)
+    for i in (1, 2, 3):
+        border, photo = scene.objects.get(f"A_Frame{i}_Border"), scene.objects.get(f"A_Frame{i}_Photo")
+        if border:
+            fx.assign([border], oak, f"frame {i}")
+        if photo:
+            fx.assign([photo], relief, f"art {i}")
+    fx.log("minimal decor: rug, plaster table, tiered pendant, cove light, olive tree, plaster art")
 
 
 # Kidney bouclé sofa (client reference photo): bean-shaped seat, a curved back that wraps the seat and
@@ -598,7 +796,7 @@ def apply_review_fixes(scene, pal):
     # 3. Every lobby light at 2700K.
     warm = [o for o in scene.objects if o.type == "LIGHT" and o.name not in WARM_LIGHT_SKIP]
     for o in warm:
-        o.data.color = WARM_LIGHT
+        o.data.color = pal.get("light_color", WARM_LIGHT)
     fx.log(f"{len(warm)} lights set to ~2700K")
 
     # 4. The booth facade gets its own light, and a larger pink neon heart.
@@ -610,10 +808,10 @@ def apply_review_fixes(scene, pal):
         cy = (clo.y + chi.y) / 2
         for i, (dy, tz) in enumerate(((-0.35, 1.2), (0.35, 1.6))):
             fx.add_light(f"PB_Booth_Wash{i}", "SPOT", (face_x - 1.3, cy + dy, 2.95), 60,
-                         color=WARM_LIGHT, aim=(face_x, cy + dy * 0.3, tz),
+                         color=pal.get("light_color", WARM_LIGHT), aim=(face_x, cy + dy * 0.3, tz),
                          spot_size=math.radians(38), spot_blend=0.5, shadow_soft_size=0.03)
     heart = scene.objects.get("Booth_Heart")
-    if heart:
+    if heart and pal.get("neon_heart", True):
         lo, hi = fx.bbox_world([heart])
         c = (lo + hi) / 2
         scale_mesh_verts(heart, lambda co: Vector((co.x - 0.004, c.y + (co.y - c.y) * HEART_SCALE,
