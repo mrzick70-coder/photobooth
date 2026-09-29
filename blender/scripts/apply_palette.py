@@ -23,6 +23,9 @@ from mathutils import Matrix, Vector
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import fix_scene as fx  # noqa: E402
 
+# Removed at the client's request: every prop on the accessory rack.
+CLIENT_REMOVED = ["B_Book", "B_GoldBall", "B_Hat", "B_Pile", "B_PotPlant", "B_Vase"]
+
 PALETTES = {
     "mocha": {
         "walls": "#6B5445", "ceiling": "#EDE5DA", "woodwork": "#F2EDE6", "sofa": "#E4D8C6",
@@ -52,8 +55,20 @@ PALETTES = {
         "curtain": "#E9DFD0", "accent": "#B08D57", "accent_metal": True,
         "blinds": ["#F2F0EC", "#E6C3BE", "#2A2928"],
         "skirting": "#5A1E26", "booth_shell": "#5A1E26", "floor_checker": True,
-        "brass_objects": ["D_Mirror_Frame"], "hide_prefixes": ["C_"],
-        "checker_tile": 0.5, "review_fixes": True, "sofa_model": "kidney",
+        "brass_objects": ["D_Mirror_Frame"], "hide_prefixes": ["C_", *CLIENT_REMOVED],
+        "checker_tile": 0.5, "review_fixes": True, "sofa_model": "kidney", "bench": False,
+    },
+    # Light version for a small room with no daylight: pale blush walls (Munsell value ~8.5) and a warm
+    # white ceiling reflect most of the light; the booth stays deep cherry as the one bold element, and
+    # cherry skirting carries that colour round the room. Black/cream checker grounds the pale walls.
+    "cherry_light": {
+        "walls": "#EFDDD4", "ceiling": "#F6F0E8", "woodwork": "#F3ECE3", "sofa": "#EDE4D8",
+        "curtain": "#EFE6D8", "accent": "#B08D57", "accent_metal": True,
+        "blinds": ["#F2F0EC", "#E6C3BE", "#2A2928"],
+        "skirting": "#7A1F2B", "booth_shell": "#7A1F2B", "floor_checker": True, "checker_tile": 0.5,
+        "brass_objects": ["D_Mirror_Frame"], "hide_prefixes": ["C_", *CLIENT_REMOVED],
+        "review_fixes": True, "sofa_model": "kidney", "bench": False,
+        "exposure": 0.0, "downlight_boost": 1.0,  # pale walls need no compensation for dark paint
     },
 }
 # Design review of the cherry concept (see apply_review_fixes).
@@ -61,7 +76,7 @@ PENDANT_MIN_CLEARANCE = 2.1  # m above the floor for anything hanging over a wal
 WARM_LIGHT = (1.0, 0.71, 0.42)  # ~2700K
 WARM_LIGHT_SKIP = ("Booth_Flash_Light",)  # the booth keeps neutral light for skin tones
 HEART_SCALE = 1.6  # the tallest heart that fits between the curtain head and the booth top
-DEFAULT_PALETTE = "cherry"
+DEFAULT_PALETTE = "cherry_light"
 
 # Materials in the file, grouped by palette role.
 MATERIALS = {
@@ -204,11 +219,11 @@ def tone_down_globes():
         fx.log("Globe: emission x0.35, 2700K opal")
 
 
-def boost_downlights(scene):
+def boost_downlights(scene, factor=DOWNLIGHT_BOOST):
     for o in scene.objects:
         if o.type == "LIGHT" and o.name.startswith("Room_Downlight"):
-            o.data.energy *= DOWNLIGHT_BOOST
-    fx.log(f"downlights x{DOWNLIGHT_BOOST}")
+            o.data.energy *= factor
+    fx.log(f"downlights x{factor}")
 
 
 def mat_frosted_bulb():
@@ -325,7 +340,7 @@ def apply_extras(scene, pal):
             scene.objects[name].hide_render = True
         fx.log(f"hidden: {hidden}")
     if pal.get("review_fixes"):
-        apply_review_fixes(scene)
+        apply_review_fixes(scene, pal)
     if pal.get("sofa_model") == "kidney":
         build_kidney_sofa(scene)
 
@@ -381,8 +396,8 @@ def flat_material(name, hex_color, roughness=0.6):
     return mat
 
 
-def add_entrance_wall(scene):
-    """Gallery of customer strips, a slim waiting bench and a QR pay point on the empty entrance wall."""
+def add_entrance_wall(scene, pal):
+    """A slim waiting bench and a QR pay point on the empty entrance wall (customer-strip gallery on request)."""
     coll = bpy.data.collections.get("PB_Entrance") or bpy.data.collections.new("PB_Entrance")
     if coll.name not in scene.collection.children:
         scene.collection.children.link(coll)
@@ -404,35 +419,39 @@ def add_entrance_wall(scene):
         cx = 2.1
     # Bench: 2.0 m long, 0.35 m deep, seat at 0.47 m; walkway to the booth keeps > 1.6 m.
     x0, x1, d = cx - 1.0, cx + 1.0, 0.35
-    box("PB_Bench_Base", (x0, face_y, 0.0), (x1, face_y + d, 0.38), black, coll)
-    box("PB_Bench_Cushion", (x0 + 0.02, face_y + 0.01, 0.38), (x1 - 0.02, face_y + d, 0.47), cream, coll)
+    if pal.get("bench", True):
+        base = flat_material("PB_Bench_Paint", pal["bench_base"], 0.5) if "bench_base" in pal else black
+        box("PB_Bench_Base", (x0, face_y, 0.0), (x1, face_y + d, 0.38), base, coll)
+        box("PB_Bench_Cushion", (x0 + 0.02, face_y + 0.01, 0.38), (x1 - 0.02, face_y + d, 0.47), cream, coll)
 
-    # Gallery: one row of 2x6-inch strips in thin brass frames, below the brand name.
-    # Above the heads of seated guests (~1.2 m) and below the brand name (~1.7 m).
-    fw, fh, gap, z0 = 0.09, 0.22, 0.07, 1.32
-    count = 13
-    start = cx - (count * (fw + gap) - gap) / 2
-    for i in range(count):
-        x = start + i * (fw + gap)
-        box(f"PB_Gallery_Frame{i:02d}", (x, face_y, z0), (x + fw, face_y + 0.015, z0 + fh), brass, coll)
-        box(f"PB_Gallery_Paper{i:02d}", (x + 0.008, face_y + 0.015, z0 + 0.008),
-            (x + fw - 0.008, face_y + 0.018, z0 + fh - 0.008), paper, coll)
-        cell = (fh - 0.03) / 4
-        for j in range(4):
-            cz = z0 + fh - 0.012 - (j + 1) * cell
-            box(f"PB_Gallery_Photo{i:02d}_{j}", (x + 0.014, face_y + 0.018, cz + 0.004),
-                (x + fw - 0.014, face_y + 0.02, cz + cell - 0.002), tones[(i + j) % len(tones)], coll)
+    count = 0
+    if pal.get("strip_gallery"):
+        # Gallery: one row of 2x6-inch strips in thin brass frames, below the brand name.
+        # Above the heads of seated guests (~1.2 m) and below the brand name (~1.7 m).
+        fw, fh, gap, z0 = 0.09, 0.22, 0.07, 1.32
+        count = 13
+        start = cx - (count * (fw + gap) - gap) / 2
+        for i in range(count):
+            x = start + i * (fw + gap)
+            box(f"PB_Gallery_Frame{i:02d}", (x, face_y, z0), (x + fw, face_y + 0.015, z0 + fh), brass, coll)
+            box(f"PB_Gallery_Paper{i:02d}", (x + 0.008, face_y + 0.015, z0 + 0.008),
+                (x + fw - 0.008, face_y + 0.018, z0 + fh - 0.008), paper, coll)
+            cell = (fh - 0.03) / 4
+            for j in range(4):
+                cz = z0 + fh - 0.012 - (j + 1) * cell
+                box(f"PB_Gallery_Photo{i:02d}_{j}", (x + 0.014, face_y + 0.018, cz + 0.004),
+                    (x + fw - 0.014, face_y + 0.02, cz + cell - 0.002), tones[(i + j) % len(tones)], coll)
 
     # QR pay point next to the booth: brass shelf and a black QR board.
     box("PB_Pay_Shelf", (4.15, face_y, 1.0), (4.6, face_y + 0.22, 1.03), brass, coll)
     box("PB_Pay_Board", (4.25, face_y + 0.02, 1.03), (4.5, face_y + 0.05, 1.33), black, coll)
     box("PB_Pay_QR", (4.3, face_y + 0.05, 1.12), (4.45, face_y + 0.052, 1.27), paper, coll)
-    fx.log(f"entrance wall: bench, {count}-strip gallery, QR pay point")
+    fx.log(f"entrance wall: bench={pal.get('bench', True)}, QR pay point, {count} gallery strips")
 
     cam_data = bpy.data.cameras.new("Cam_09_tuong_loi_vao")
     cam_data.lens = 16
     cam = bpy.data.objects.new("Cam_09_tuong_loi_vao", cam_data)
-    cam.location = (2.6, -0.6, 1.5)
+    cam.location = (cx, -0.6, 1.5)  # centred on the bench and brand name
     cam.rotation_euler = (math.radians(88), 0.0, math.radians(180))
     coll.objects.link(cam)
 
@@ -563,7 +582,7 @@ def build_kidney_sofa(scene):
            f"seat {seat_h} m; replaces A_Sofa_Cloud")
 
 
-def apply_review_fixes(scene):
+def apply_review_fixes(scene, pal):
     # 1. Pendant cluster 1 hung at 1.77 m over the new walkway once the counter was removed.
     raise_pendant(scene, "Room_Pendant1")
 
@@ -600,11 +619,12 @@ def apply_review_fixes(scene):
         scale_mesh_verts(heart, lambda co: Vector((co.x - 0.004, c.y + (co.y - c.y) * HEART_SCALE,
                                                    c.z + (co.z - c.z) * HEART_SCALE)))
         neon = fx.mat_neon()
-        fx.set_input(principled(neon), ["Emission Strength"], 2.5)
+        fx.set_input(principled(neon), ["Emission Color", "Emission"], (1.0, 0.22, 0.42, 1.0))
+        fx.set_input(principled(neon), ["Emission Strength"], 1.6)
         fx.assign([heart], neon, "heart (neon)")
 
     # 5. Use the empty entrance wall.
-    add_entrance_wall(scene)
+    add_entrance_wall(scene, pal)
 
 
 def visible_blind(scene):
@@ -622,12 +642,12 @@ def main():
     pal = PALETTES[args.palette]
     fx.log(f"palette {args.palette}")
 
-    fx.fix_render(scene, EXPOSURE)
+    fx.fix_render(scene, pal.get("exposure", EXPOSURE))
     fix_visibility(scene)
     ensure_visible(scene, "Room_Ceiling")
     boost_booth_flash(scene)
     tone_down_globes()
-    boost_downlights(scene)
+    boost_downlights(scene, pal.get("downlight_boost", DOWNLIGHT_BOOST))
 
     for role, names in MATERIALS.items():
         for name in names:
