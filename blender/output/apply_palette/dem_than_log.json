@@ -1,6 +1,6 @@
 [
  "palette dem_than",
- "render: BLENDER_EEVEE, Standard / None",
+ "render: BLENDER_EEVEE, AgX / AgX - Medium High Contrast, exposure 0.5",
  "light on: Room_Pendant1_Light",
  "light on: Room_Pendant2_Light",
  "light on: Room_Downlight1_Light",
@@ -18,6 +18,10 @@
  "light on: D_MirrorLight2",
  "light on: D_MirrorLight3",
  "light on: D_MirrorFace",
+ "Room_Ceiling: z 3.00..3.10, hide_render=False, visible_camera=True, holdout=False, collections=['Ceiling']",
+ "  collection Ceiling: exclude=False, holdout=False, indirect_only=False, hide_render=True",
+ "  material Ceiling: backface_culling=False, camera_culling=False",
+ "Booth_Flash_Light x6.0 -> 30W",
  "Globe: emission x0.35, 2700K opal",
  "downlights x1.33",
  "Paint_Wall -> #3B3936",
