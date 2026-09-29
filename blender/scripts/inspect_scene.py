@@ -148,7 +148,9 @@ def render_previews(scene, out_dir):
 def main():
     args = parse_args()
     if not os.path.exists(args.blend):
-        raise SystemExit(f"Blend file not found: {args.blend}")
+        raise SystemExit(f"Blend file not found: {args.blend}\n"
+                         "Set repo variable BLEND_FILE (Settings > Secrets and variables > Actions > Variables) "
+                         "to the full path of your .blend file.")
     bpy.ops.wm.open_mainfile(filepath=args.blend)
     os.makedirs(args.out, exist_ok=True)
     scene = bpy.context.scene
