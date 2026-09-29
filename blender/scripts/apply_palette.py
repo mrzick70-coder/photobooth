@@ -60,6 +60,8 @@ BLINDS = [("Rem_Ivory", "BlindBar_Ivory", "Cam_01a_cabin_rem01_trang"),
 PLAN_PREFIXES = ("Plan_", "PL_")
 PLAN_CAMERAS = ("Cam_05_mat_bang", "Cam_07_mat_bang_den")
 DOWNLIGHT_BOOST = 1.33  # ~1,800 lm -> ~2,400 lm fittings
+BOOTH_FLASH_BOOST = 6.0  # the booth interior rendered grey; a photo booth is lit bright
+EXPOSURE = 0.5  # AgX renders mid-tones darker than Standard
 
 
 def parse_args():
@@ -122,6 +124,52 @@ def fix_visibility(scene):
             fx.log(f"{name}: backface culling off")
 
 
+def ensure_visible(scene, name):
+    """Log every reason an object could be missing from camera renders, and undo it."""
+    o = scene.objects.get(name)
+    if o is None:
+        fx.log(f"{name}: not in scene")
+        return
+    lo, hi = fx.bbox_world([o])
+    fx.log(f"{name}: z {lo.z:.2f}..{hi.z:.2f}, hide_render={o.hide_render}, "
+           f"visible_camera={getattr(o, 'visible_camera', None)}, holdout={getattr(o, 'is_holdout', None)}, "
+           f"collections={[c.name for c in o.users_collection]}")
+    o.hide_render = False
+    if hasattr(o, "visible_camera"):
+        o.visible_camera = True
+    if getattr(o, "is_holdout", False):
+        o.is_holdout = False
+
+    def walk(lc):
+        yield lc
+        for child in lc.children:
+            yield from walk(child)
+
+    names = {c.name for c in o.users_collection}
+    for lc in walk(bpy.context.view_layer.layer_collection):
+        if lc.name in names:
+            fx.log(f"  collection {lc.name}: exclude={lc.exclude}, holdout={lc.holdout}, "
+                   f"indirect_only={lc.indirect_only}, hide_render={lc.collection.hide_render}")
+            lc.exclude = False
+            lc.holdout = False
+            lc.indirect_only = False
+            lc.collection.hide_render = False
+    for slot in o.material_slots:
+        mat = slot.material
+        if mat:
+            fx.log(f"  material {mat.name}: backface_culling={getattr(mat, 'use_backface_culling', None)}, "
+                   f"camera_culling={getattr(mat, 'use_backface_culling_shadow', None)}")
+            if hasattr(mat, "use_backface_culling"):
+                mat.use_backface_culling = False
+
+
+def boost_booth_flash(scene):
+    light = scene.objects.get("Booth_Flash_Light")
+    if light:
+        light.data.energy *= BOOTH_FLASH_BOOST
+        fx.log(f"Booth_Flash_Light x{BOOTH_FLASH_BOOST} -> {light.data.energy:.0f}W")
+
+
 def tone_down_globes():
     bsdf = principled(bpy.data.materials.get("Globe"))
     if bsdf:
@@ -153,8 +201,10 @@ def main():
     pal = PALETTES[args.palette]
     fx.log(f"palette {args.palette}")
 
-    fx.fix_render(scene)
+    fx.fix_render(scene, EXPOSURE)
     fix_visibility(scene)
+    ensure_visible(scene, "Room_Ceiling")
+    boost_booth_flash(scene)
     tone_down_globes()
     boost_downlights(scene)
 

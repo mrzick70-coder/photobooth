@@ -343,7 +343,17 @@ def enum_ids(obj, prop):
     return [i.identifier for i in obj.bl_rna.properties[prop].enum_items]
 
 
-def fix_render(scene):
+def set_first(obj, prop, values):
+    for v in values:
+        try:
+            setattr(obj, prop, v)
+            return v
+        except TypeError:
+            continue
+    return None
+
+
+def fix_render(scene, exposure=0.0):
     engines = enum_ids(scene.render, "engine")
     for eng in ("BLENDER_EEVEE_NEXT", "BLENDER_EEVEE", "CYCLES"):
         if eng in engines:
@@ -354,16 +364,12 @@ def fix_render(scene):
             scene.eevee.use_raytracing = True
         scene.eevee.taa_render_samples = 64
     vs = scene.view_settings
-    for vt in ("AgX", "Filmic"):
-        if vt in enum_ids(vs, "view_transform"):
-            vs.view_transform = vt
-            break
-    for look in ("AgX - Medium High Contrast", "Medium High Contrast"):
-        if look in enum_ids(vs, "look"):
-            vs.look = look
-            break
-    vs.exposure = 0.0
-    log(f"render: {scene.render.engine}, {vs.view_transform} / {vs.look}")
+    # view_transform and look are dynamic enums (they come from the OCIO config), so their
+    # items cannot be listed up front: try each name and keep the first one Blender accepts.
+    set_first(vs, "view_transform", ("AgX", "Filmic"))
+    set_first(vs, "look", ("AgX - Medium High Contrast", "Medium High Contrast"))
+    vs.exposure = exposure if vs.view_transform in {"AgX", "Filmic"} else 0.0
+    log(f"render: {scene.render.engine}, {vs.view_transform} / {vs.look}, exposure {vs.exposure}")
 
 
 def render_previews(scene, out_dir, tag):
