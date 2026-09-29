@@ -1,0 +1,11268 @@
+{
+ "blender_version": "5.2.2 LTS",
+ "file": "Photobooth_Cinema.blend",
+ "scene": {
+  "engine": "BLENDER_WORKBENCH",
+  "resolution": [
+   1600,
+   1000,
+   100
+  ],
+  "view_transform": "Standard",
+  "look": "None",
+  "exposure": 0.0,
+  "gamma": 1.0,
+  "camera": "Cam_05_mat_bang",
+  "unit_scale": 1.0,
+  "eevee_samples": 64,
+  "world": {
+   "name": "World",
+   "color": [
+    0.75,
+    0.8,
+    0.9,
+    1.0
+   ],
+   "strength": 0.2
+  }
+ },
+ "gpu": {
+  "compute_device_type": "NONE",
+  "devices": []
+ },
+ "objects": {
+  "A_Brand_Glow": {
+   "type": "LIGHT",
+   "loc": [
+    2.1,
+    -2.98,
+    1.75
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "POINT",
+    "energy": 1.25,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "radius": 0.05
+   }
+  },
+  "A_Brand_Text": {
+   "type": "FONT",
+   "loc": [
+    2.1,
+    -2.97,
+    1.75
+   ],
+   "dim": [
+    0.573,
+    0.066,
+    0.04
+   ],
+   "parent": null,
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Butter_Text"
+   ]
+  },
+  "A_Floor_Tube": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.34,
+    0.03,
+    1.725
+   ],
+   "parent": "A_Floor_Tube_Lamp",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Tube_2700K"
+   ],
+   "verts": 32,
+   "faces": 18
+  },
+  "A_Floor_Tube_Lamp": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false
+  },
+  "A_Floor_Tube_Light": {
+   "type": "LIGHT",
+   "loc": [
+    0.3,
+    -1.32,
+    1.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "POINT",
+    "energy": 3.75,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "radius": 0.05
+   }
+  },
+  "A_Frame1": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false
+  },
+  "A_Frame1_Border": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.42,
+    0.025,
+    0.6
+   ],
+   "parent": "A_Frame1",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Frame_Black"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 16,
+   "faces": 16
+  },
+  "A_Frame1_Photo": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.34,
+    0.0,
+    0.52
+   ],
+   "parent": "A_Frame1",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "A_Frame1_Photo_mat"
+   ],
+   "verts": 4,
+   "faces": 1
+  },
+  "A_Frame2": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false
+  },
+  "A_Frame2_Border": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.42,
+    0.025,
+    0.6
+   ],
+   "parent": "A_Frame2",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Frame_Black"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 16,
+   "faces": 16
+  },
+  "A_Frame2_Photo": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.34,
+    0.0,
+    0.52
+   ],
+   "parent": "A_Frame2",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "A_Frame2_Photo_mat"
+   ],
+   "verts": 4,
+   "faces": 1
+  },
+  "A_Frame3": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false
+  },
+  "A_Frame3_Border": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.42,
+    0.025,
+    0.6
+   ],
+   "parent": "A_Frame3",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Frame_Black"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 16,
+   "faces": 16
+  },
+  "A_Frame3_Photo": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.34,
+    0.0,
+    0.52
+   ],
+   "parent": "A_Frame3",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "A_Frame3_Photo_mat"
+   ],
+   "verts": 4,
+   "faces": 1
+  },
+  "A_Sofa": {
+   "type": "EMPTY",
+   "loc": [
+    0.9,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false
+  },
+  "A_Sofa_Cloud": {
+   "type": "MESH",
+   "loc": [
+    0.9,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.973,
+    1.6,
+    0.88
+   ],
+   "parent": "A_Sofa",
+   "collections": [
+    "A_Sanh_Cho"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Sofa_Boucle"
+   ],
+   "verts": 11436,
+   "faces": 11760
+  },
+  "B_Book_11_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.036,
+    0.18,
+    0.252
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_11_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.034,
+    0.18,
+    0.279
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.001"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_11_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.034,
+    0.18,
+    0.266
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.002"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_11_3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.03,
+    0.18,
+    0.263
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.003"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_11_4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.036,
+    0.18,
+    0.27
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.004"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_11_5": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.035,
+    0.18,
+    0.262
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.005"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_127_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.037,
+    0.18,
+    0.248
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.011"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_127_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.033,
+    0.18,
+    0.262
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.012"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_127_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.033,
+    0.18,
+    0.264
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.013"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_127_3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.035,
+    0.18,
+    0.255
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.014"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_127_4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.033,
+    0.18,
+    0.248
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.015"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_91_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.032,
+    0.18,
+    0.249
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.006"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_91_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.038,
+    0.18,
+    0.244
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.007"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_91_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.033,
+    0.18,
+    0.232
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.008"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_91_3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.032,
+    0.18,
+    0.234
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.009"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Book_91_4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.038,
+    0.18,
+    0.238
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BookM.010"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_GoldBall_259": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.09
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "GoldBall"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "B_GoldBall_309": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "GoldBall"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "B_GoldBall_319": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    0.1,
+    0.1
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "GoldBall"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "B_HatBoxLid_309": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.27,
+    0.27,
+    0.02
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Ribbon"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_HatBox_309": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.26,
+    0.26,
+    0.18
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "HatBox"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_Hat_Band_226": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.156,
+    0.156,
+    0.025
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Ribbon"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_Hat_Band_264": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.156,
+    0.156,
+    0.025
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Ribbon"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_Hat_Brim_226": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.3,
+    0.3,
+    0.016
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Hat_Straw"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_Hat_Brim_264": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.3,
+    0.3,
+    0.016
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Hat_Pink"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_Hat_Crown_226": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.12
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Hat_Straw"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_Hat_Crown_264": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.12
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Hat_Pink"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "B_Pile_127_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.187,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.004"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_127_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.182,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.005"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_127_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.184,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.006"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_127_3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.189,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.007"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_127_4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.186,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.008"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_161_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.189,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.009"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_161_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.182,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.010"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_161_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.183,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.011"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_53_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.181,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_53_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.187,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.001"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_53_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.181,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.002"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_Pile_53_3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.182,
+    0.2,
+    0.033
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "PileM.003"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "B_PotPlant_Leaf_11_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_11_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_11_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_11_3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_11_4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_127_0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_127_1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_127_2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_127_3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Leaf_127_4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.15
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Pot_11": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.13
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Pot"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_PotPlant_Pot_127": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.12,
+    0.12,
+    0.1
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Pot"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_PotPlant_Top_11": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    0.1,
+    0.16
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_PotPlant_Top_127": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    0.1,
+    0.16
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leaf"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "B_Prop_Rack": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false
+  },
+  "B_Rack_Back": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.375,
+    0.015,
+    1.8
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rack_Back"
+   ],
+   "verts": 244,
+   "faces": 124
+  },
+  "B_Rack_Shelf0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.182,
+    0.398,
+    0.03
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rack_Paint"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 102,
+   "faces": 53
+  },
+  "B_Rack_Shelf1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.375,
+    0.308,
+    0.03
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rack_Paint"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 102,
+   "faces": 53
+  },
+  "B_Rack_Shelf2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.192,
+    0.351,
+    0.03
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rack_Paint"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 102,
+   "faces": 53
+  },
+  "B_Rack_Shelf3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.368,
+    0.388,
+    0.03
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rack_Paint"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 102,
+   "faces": 53
+  },
+  "B_Rack_Shelf4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.185,
+    0.303,
+    0.03
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rack_Paint"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 102,
+   "faces": 53
+  },
+  "B_VaseNeck_161_229": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.045,
+    0.045,
+    0.048
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_VaseNeck_91_222": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.045,
+    0.045,
+    0.084
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_VaseNeck_91_240": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.041,
+    0.041,
+    0.06
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase2"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_VaseNeck_91_258": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.045,
+    0.045,
+    0.096
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_Vase_161_229": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    0.1,
+    0.112
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_Vase_91_222": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    0.1,
+    0.196
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_Vase_91_240": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.09,
+    0.09,
+    0.14
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase2"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "B_Vase_91_258": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    0.1,
+    0.224
+   ],
+   "parent": "B_Prop_Rack",
+   "collections": [
+    "B_Gia_Dao_Cu"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Vase"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "Booth_Bench": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Bench_Body": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.35,
+    1.16,
+    0.36
+   ],
+   "parent": "Booth_Bench",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leatherette_Ivory"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Bench_Cushion": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.35,
+    1.16,
+    0.09
+   ],
+   "parent": "Booth_Bench",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Leatherette_Ivory"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Blind_Headbox": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Blind_Headbox.001": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.26,
+    1.2,
+    0.12
+   ],
+   "parent": "Booth_Blind_Headbox",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Cream_Booth_Interior"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Blind_Roller_1": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.04,
+    1.18,
+    0.04
+   ],
+   "parent": "Booth_Blind_Headbox",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Inox"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "Booth_Blind_Roller_2": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.04,
+    1.18,
+    0.04
+   ],
+   "parent": "Booth_Blind_Headbox",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Inox"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "Booth_Blind_Roller_3": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.04,
+    1.18,
+    0.04
+   ],
+   "parent": "Booth_Blind_Headbox",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Inox"
+   ],
+   "verts": 48,
+   "faces": 26
+  },
+  "Booth_CINE1": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Cabin_Floor": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    2.89,
+    1.2,
+    0.012
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BoothFloor"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Camera_Body": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.22,
+    0.2
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Door_Alu_Frame": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.94,
+    0.017,
+    2.025
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Aluminium"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 24,
+   "faces": 18
+  },
+  "Booth_Door_Curtain": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.93,
+    0.099,
+    2.0
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Velvet_Door"
+   ],
+   "verts": 605,
+   "faces": 480
+  },
+  "Booth_Flash": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Flash_Light": {
+   "type": "LIGHT",
+   "loc": [
+    5.345,
+    -2.035,
+    1.65
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "light": {
+    "type": "AREA",
+    "energy": 5.0,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.56,
+     0.14
+    ]
+   }
+  },
+  "Booth_Flash_Panel": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.006,
+    0.6,
+    0.18
+   ],
+   "parent": "Booth_Flash",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Octabox_Neutral"
+   ],
+   "verts": 84,
+   "faces": 44
+  },
+  "Booth_Hatch_Frame": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.915,
+    0.008,
+    1.9
+   ],
+   "parent": "Booth_Service_Hatch",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Aluminium"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 32,
+   "faces": 24
+  },
+  "Booth_Hatch_Handle": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.02,
+    0.02,
+    0.12
+   ],
+   "parent": "Booth_Service_Hatch",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Aluminium"
+   ],
+   "verts": 24,
+   "faces": 14
+  },
+  "Booth_Heart": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.012,
+    0.145
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Butter_Text"
+   ],
+   "verts": 128,
+   "faces": 66
+  },
+  "Booth_Interior_Cream": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    2.0,
+    1.2,
+    2.2
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Cream_Booth_Interior"
+   ],
+   "verts": 48,
+   "faces": 36
+  },
+  "Booth_LED_Strip_L": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.006,
+    0.05,
+    0.6
+   ],
+   "parent": "Booth_Look_Here",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "LED_5000K"
+   ],
+   "verts": 84,
+   "faces": 44
+  },
+  "Booth_LED_Strip_R": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.006,
+    0.05,
+    0.6
+   ],
+   "parent": "Booth_Look_Here",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "LED_5000K"
+   ],
+   "verts": 84,
+   "faces": 44
+  },
+  "Booth_Lens": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.076,
+    0.076
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Booth_Lens_Front": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.03,
+    0.06,
+    0.06
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Booth_Look_Here": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false
+  },
+  "Booth_PC": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.775,
+    0.45,
+    0.45
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Partition_Camera": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.055,
+    1.2,
+    2.2
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Cream_Booth_Interior"
+   ],
+   "verts": 32,
+   "faces": 24
+  },
+  "Booth_PhotoSlot_Frame": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.36,
+    0.03,
+    0.21
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Inox"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 40,
+   "faces": 30
+  },
+  "Booth_Preview_Screen": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Printer": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.775,
+    0.4,
+    0.35
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Printer_Out": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.28,
+    0.06,
+    0.1
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Roof": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    3.0,
+    1.31,
+    0.1
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Root": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Screen_Bezel": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.05,
+    0.29,
+    0.18
+   ],
+   "parent": "Booth_Preview_Screen",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Screen_Countdown": {
+   "type": "FONT",
+   "loc": [
+    5.345,
+    -1.99,
+    1.02
+   ],
+   "dim": [
+    0.009,
+    0.03,
+    0.002
+   ],
+   "parent": "Booth_Preview_Screen",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal_Dark"
+   ]
+  },
+  "Booth_Screen_Panel": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    0.27,
+    0.16
+   ],
+   "parent": "Booth_Preview_Screen",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Screen"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Screen_Thumb0": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.004,
+    0.035,
+    0.025
+   ],
+   "parent": "Booth_Preview_Screen",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Screen_Thumb1": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.004,
+    0.035,
+    0.025
+   ],
+   "parent": "Booth_Preview_Screen",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Screen_Thumb2": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.004,
+    0.035,
+    0.025
+   ],
+   "parent": "Booth_Preview_Screen",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Service_Hatch": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Shell_MDF": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    3.0,
+    1.31,
+    2.3
+   ],
+   "parent": "Booth_CINE1",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 72,
+   "faces": 54
+  },
+  "Booth_Tech_Bay": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false
+  },
+  "Booth_Tech_Shelf": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.835,
+    1.2,
+    0.02
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BoothFloor"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Booth_Text_Here": {
+   "type": "FONT",
+   "loc": [
+    5.045,
+    -2.053,
+    1.25
+   ],
+   "dim": [
+    0.062,
+    0.027,
+    0.006
+   ],
+   "parent": "Booth_Look_Here",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal_Dark"
+   ]
+  },
+  "Booth_Text_Look": {
+   "type": "FONT",
+   "loc": [
+    5.645,
+    -2.053,
+    1.25
+   ],
+   "dim": [
+    0.059,
+    0.027,
+    0.006
+   ],
+   "parent": "Booth_Look_Here",
+   "collections": [
+    "Booth_Cabin_Interior"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal_Dark"
+   ]
+  },
+  "Booth_UPS": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.775,
+    0.3,
+    0.35
+   ],
+   "parent": "Booth_Tech_Bay",
+   "collections": [
+    "Booth"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Charcoal"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "C_Counter_Front": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.6,
+    1.4,
+    1.06
+   ],
+   "parent": "C_Ticket_Counter",
+   "collections": [
+    "C_Phong_Ve"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "C_Counter_LED": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.51,
+    1.31,
+    0.02
+   ],
+   "parent": "C_Ticket_Counter",
+   "collections": [
+    "C_Phong_Ve"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "LED_5000K"
+   ],
+   "verts": 16,
+   "faces": 12
+  },
+  "C_Counter_LED_Light": {
+   "type": "LIGHT",
+   "loc": [
+    2.1,
+    -1.55,
+    0.12
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 2.5,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     1.44,
+     0.1
+    ]
+   }
+  },
+  "C_Counter_LED_Light2": {
+   "type": "LIGHT",
+   "loc": [
+    1.25,
+    -2.3,
+    0.12
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 1.875,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     1.26,
+     0.1
+    ]
+   }
+  },
+  "C_Counter_Top": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.62,
+    1.42,
+    0.04
+   ],
+   "parent": "C_Ticket_Counter",
+   "collections": [
+    "C_Phong_Ve"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Marble_White"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "C_Counter_Work": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.3,
+    1.1,
+    0.87
+   ],
+   "parent": "C_Ticket_Counter",
+   "collections": [
+    "C_Phong_Ve"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "C_Counter_WorkTop": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.3,
+    1.1,
+    0.03
+   ],
+   "parent": "C_Ticket_Counter",
+   "collections": [
+    "C_Phong_Ve"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Marble_White"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "C_Ticket_Counter": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "C_Phong_Ve"
+   ],
+   "hidden_render": false
+  },
+  "Cam_01a_cabin_rem01_trang": {
+   "type": "CAMERA",
+   "loc": [
+    5.345,
+    -1.995,
+    1.25
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 16.0,
+    "rot_deg": [
+     90.0,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_01b_cabin_rem02_be": {
+   "type": "CAMERA",
+   "loc": [
+    5.345,
+    -1.995,
+    1.25
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 16.0,
+    "rot_deg": [
+     90.0,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_01c_cabin_rem03_xam": {
+   "type": "CAMERA",
+   "loc": [
+    5.345,
+    -1.995,
+    1.25
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 16.0,
+    "rot_deg": [
+     90.0,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_02_toan_canh_sanh": {
+   "type": "CAMERA",
+   "loc": [
+    0.1,
+    -2.9,
+    2.6
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 16.0,
+    "rot_deg": [
+     75.5,
+     0.0,
+     -63.8
+    ]
+   }
+  },
+  "Cam_03_tu_loi_vao": {
+   "type": "CAMERA",
+   "loc": [
+    0.15,
+    -2.35,
+    1.6
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 18.0,
+    "rot_deg": [
+     83.7,
+     0.0,
+     -58.6
+    ]
+   }
+  },
+  "Cam_04_mat_tien_buong": {
+   "type": "CAMERA",
+   "loc": [
+    2.99,
+    -1.58,
+    1.4
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 16.0,
+    "rot_deg": [
+     91.7,
+     -0.0,
+     -90.0
+    ]
+   }
+  },
+  "Cam_05_mat_bang": {
+   "type": "CAMERA",
+   "loc": [
+    3.0,
+    -1.55,
+    12.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 50.0,
+    "rot_deg": [
+     0.0,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_06_cabin_goc_nhin_khach": {
+   "type": "CAMERA",
+   "loc": [
+    5.345,
+    -0.855,
+    1.15
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 18.0,
+    "rot_deg": [
+     -82.9,
+     180.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_07_mat_bang_den": {
+   "type": "CAMERA",
+   "loc": [
+    3.0,
+    -1.9,
+    12.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 50.0,
+    "rot_deg": [
+     0.0,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_08_tuong_trong_cung": {
+   "type": "CAMERA",
+   "loc": [
+    3.05,
+    -2.9,
+    1.6
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 18.0,
+    "rot_deg": [
+     90.0,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_s1_sofa_truoc": {
+   "type": "CAMERA",
+   "loc": [
+    0.9,
+    -2.4,
+    0.85
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 28.0,
+    "rot_deg": [
+     75.8,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_s2_sofa_3_4_trai": {
+   "type": "CAMERA",
+   "loc": [
+    2.5,
+    -1.9,
+    0.85
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 28.0,
+    "rot_deg": [
+     76.4,
+     0.0,
+     48.6
+    ]
+   }
+  },
+  "Cam_s3_sofa_3_4_phai": {
+   "type": "CAMERA",
+   "loc": [
+    0.05,
+    -1.9,
+    0.85
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 28.0,
+    "rot_deg": [
+     72.8,
+     -0.0,
+     -32.3
+    ]
+   }
+  },
+  "Cam_s4_khung_tranh": {
+   "type": "CAMERA",
+   "loc": [
+    0.9,
+    -1.9,
+    1.55
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 32.0,
+    "rot_deg": [
+     90.0,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_s5_ke_truoc": {
+   "type": "CAMERA",
+   "loc": [
+    2.74,
+    -2.9,
+    1.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 26.0,
+    "rot_deg": [
+     88.3,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "Cam_s6_ke_3_4": {
+   "type": "CAMERA",
+   "loc": [
+    3.94,
+    -1.9,
+    1.25
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 26.0,
+    "rot_deg": [
+     80.5,
+     -0.0,
+     35.2
+    ]
+   }
+  },
+  "Cam_s7_guong": {
+   "type": "CAMERA",
+   "loc": [
+    3.74,
+    -1.9,
+    1.55
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 30.0,
+    "rot_deg": [
+     90.0,
+     0.0,
+     -9.7
+    ]
+   }
+  },
+  "Cam_s8_khu_sofa": {
+   "type": "CAMERA",
+   "loc": [
+    1.25,
+    -2.55,
+    1.35
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Cameras"
+   ],
+   "hidden_render": false,
+   "camera": {
+    "lens": 22.0,
+    "rot_deg": [
+     78.9,
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  "D_Bulb00": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb01": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb02": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb03": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb04": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb05": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb06": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb07": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb08": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb09": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb10": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb11": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb12": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb13": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb14": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb15": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb16": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb17": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb18": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb19": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb20": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb21": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb22": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb23": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb24": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Bulb25": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.042,
+    0.042,
+    0.042
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Bulb_2700K"
+   ],
+   "verts": 86,
+   "faces": 96
+  },
+  "D_Mirror": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false
+  },
+  "D_MirrorFace": {
+   "type": "LIGHT",
+   "loc": [
+    4.04,
+    -0.9,
+    1.6
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 7.5,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.9,
+     0.25
+    ]
+   }
+  },
+  "D_MirrorLight0": {
+   "type": "LIGHT",
+   "loc": [
+    3.615,
+    -0.22,
+    1.15
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "POINT",
+    "energy": 1.25,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "radius": 0.05
+   }
+  },
+  "D_MirrorLight1": {
+   "type": "LIGHT",
+   "loc": [
+    4.515,
+    -0.22,
+    1.15
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "POINT",
+    "energy": 1.25,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "radius": 0.05
+   }
+  },
+  "D_MirrorLight2": {
+   "type": "LIGHT",
+   "loc": [
+    3.615,
+    -0.22,
+    2.05
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "POINT",
+    "energy": 1.25,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "radius": 0.05
+   }
+  },
+  "D_MirrorLight3": {
+   "type": "LIGHT",
+   "loc": [
+    4.515,
+    -0.22,
+    2.05
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "POINT",
+    "energy": 1.25,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "radius": 0.05
+   }
+  },
+  "D_Mirror_Frame": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.13,
+    0.07,
+    1.13
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "verts": 1152,
+   "faces": 1152
+  },
+  "D_Mirror_Glass": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.0,
+    0.006,
+    1.0
+   ],
+   "parent": "D_Mirror",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Mirror_Glossy"
+   ],
+   "verts": 192,
+   "faces": 98
+  },
+  "D_Table_Body": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.23,
+    0.47,
+    0.83
+   ],
+   "parent": "D_Vanity_Table",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "D_Table_Groove": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.13,
+    0.006,
+    0.292
+   ],
+   "parent": "D_Vanity_Table",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "verts": 16,
+   "faces": 12
+  },
+  "D_Table_Plinth": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.17,
+    0.44,
+    0.08
+   ],
+   "parent": "D_Vanity_Table",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Melamine_Plain"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "D_Table_Top": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.25,
+    0.5,
+    0.04
+   ],
+   "parent": "D_Vanity_Table",
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Marble_White"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "D_Vanity_Table": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "D_Ban_Guong"
+   ],
+   "hidden_render": false
+  },
+  "F_Rem_DeepBlue": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false
+  },
+  "F_Rem_DeepBlue_BottomBarDown": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    1.18,
+    0.025
+   ],
+   "parent": "F_Rem_DeepBlue",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": true,
+   "materials": [
+    "BlindBar_DeepBlue"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "F_Rem_DeepBlue_BottomBarUp": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    1.18,
+    0.025
+   ],
+   "parent": "F_Rem_DeepBlue",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlindBar_DeepBlue"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "F_Rem_DeepBlue_Bunched": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    1.18,
+    0.03
+   ],
+   "parent": "F_Rem_DeepBlue",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rem_DeepBlue"
+   ],
+   "verts": 10,
+   "faces": 4
+  },
+  "F_Rem_DeepBlue_Spread": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    1.18,
+    2.04
+   ],
+   "parent": "F_Rem_DeepBlue",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": true,
+   "materials": [
+    "Rem_DeepBlue"
+   ],
+   "verts": 25,
+   "faces": 16
+  },
+  "F_Rem_Ivory": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false
+  },
+  "F_Rem_Ivory_BottomBarDown": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    1.18,
+    0.025
+   ],
+   "parent": "F_Rem_Ivory",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": true,
+   "materials": [
+    "BlindBar_Ivory"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "F_Rem_Ivory_BottomBarUp": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    1.18,
+    0.025
+   ],
+   "parent": "F_Rem_Ivory",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlindBar_Ivory"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "F_Rem_Ivory_Bunched": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    1.18,
+    0.03
+   ],
+   "parent": "F_Rem_Ivory",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rem_Ivory"
+   ],
+   "verts": 10,
+   "faces": 4
+  },
+  "F_Rem_Ivory_Spread": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    1.18,
+    2.04
+   ],
+   "parent": "F_Rem_Ivory",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": true,
+   "materials": [
+    "Rem_Ivory"
+   ],
+   "verts": 25,
+   "faces": 16
+  },
+  "F_Rem_Sky": {
+   "type": "EMPTY",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": "Booth_Root",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false
+  },
+  "F_Rem_Sky_BottomBarDown": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    1.18,
+    0.025
+   ],
+   "parent": "F_Rem_Sky",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlindBar_Sky"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "F_Rem_Sky_BottomBarUp": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    1.18,
+    0.025
+   ],
+   "parent": "F_Rem_Sky",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": true,
+   "materials": [
+    "BlindBar_Sky"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "F_Rem_Sky_Bunched": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    1.18,
+    0.03
+   ],
+   "parent": "F_Rem_Sky",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": true,
+   "materials": [
+    "Rem_Sky"
+   ],
+   "verts": 10,
+   "faces": 4
+  },
+  "F_Rem_Sky_Spread": {
+   "type": "MESH",
+   "loc": [
+    6.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    1.18,
+    2.04
+   ],
+   "parent": "F_Rem_Sky",
+   "collections": [
+    "F_Rem_Phong"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Rem_Sky"
+   ],
+   "verts": 25,
+   "faces": 16
+  },
+  "PL_Bulb0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb4": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb5": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb6": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb7": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb8": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.06,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Bulb_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.697,
+    0.095,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_CounterLED": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.4,
+    0.02,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "PL_CounterLED2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.02,
+    1.2,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "PL_Down1_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.112,
+    0.074,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Down1_in": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.17,
+    0.17,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down1_ring": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down2_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.126,
+    0.074,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Down2_in": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.17,
+    0.17,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down2_ring": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down3_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.127,
+    0.075,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Down3_in": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.17,
+    0.17,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down3_ring": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down4_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.126,
+    0.073,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Down4_in": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.17,
+    0.17,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down4_ring": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down5_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.127,
+    0.075,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Down5_in": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.17,
+    0.17,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down5_ring": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down6_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.127,
+    0.075,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Down6_in": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.17,
+    0.17,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Down6_ring": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "PL_Flash": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.6,
+    0.04,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "PL_Flash_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.435,
+    0.094,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Legend0": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    4.06,
+    0.113,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Legend1": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    4.063,
+    0.113,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Legend2": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    4.697,
+    0.114,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Lux_bàn gương": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.288,
+    0.08,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Lux_giữa sảnh": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.291,
+    0.08,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Lux_lối vào": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.288,
+    0.08,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Lux_quầy": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.291,
+    0.08,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Lux_sofa": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.288,
+    0.08,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Lux_xếp hàng": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.288,
+    0.08,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Pendant1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.56,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "PL_Pendant1_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.099,
+    0.074,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Pendant2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.86,
+    0.06,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "PL_Pendant2_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.112,
+    0.074,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "PL_Tube": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.31,
+    0.04,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "PL_Tube_id": {
+   "type": "FONT",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.222,
+    0.095,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Lighting"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Dim_BoothD": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.31,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_BoothD_tk4.6899999999999995": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    0.16,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_BoothD_tk6.0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    0.16,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_BoothD_txt": {
+   "type": "FONT",
+   "loc": [
+    5.345,
+    0.52,
+    3.3
+   ],
+   "dim": [
+    1.33,
+    0.134,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ]
+  },
+  "Plan_Dim_BoothW": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    3.0,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_BoothW_tk0.0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_BoothW_tk3.0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_BoothW_txt": {
+   "type": "FONT",
+   "loc": [
+    6.6,
+    -1.5,
+    3.3
+   ],
+   "dim": [
+    0.422,
+    0.123,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ]
+  },
+  "Plan_Dim_D": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    3.0,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_D_tk0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_D_tk3.0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_D_txt": {
+   "type": "FONT",
+   "loc": [
+    -0.78,
+    -1.5,
+    3.3
+   ],
+   "dim": [
+    0.422,
+    0.123,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ]
+  },
+  "Plan_Dim_Ent": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    1.1,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_Ent_tk1.8": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_Ent_tk2.9": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_Ent_txt": {
+   "type": "FONT",
+   "loc": [
+    0.65,
+    -2.35,
+    3.3
+   ],
+   "dim": [
+    0.918,
+    0.148,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ]
+  },
+  "Plan_Dim_Staff": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    0.8,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_Staff_tk2.2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_Staff_tk3.0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.16,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_Staff_txt": {
+   "type": "FONT",
+   "loc": [
+    2.62,
+    -2.72,
+    3.3
+   ],
+   "dim": [
+    0.265,
+    0.123,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ]
+  },
+  "Plan_Dim_W": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    6.0,
+    0.01,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_W_tk0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    0.16,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_W_tk6.0": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.01,
+    0.16,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Dim_W_txt": {
+   "type": "FONT",
+   "loc": [
+    3.0,
+    -3.85,
+    3.3
+   ],
+   "dim": [
+    0.422,
+    0.123,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ]
+  },
+  "Plan_Door_Arc01": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc02": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc03": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc04": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc05": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc06": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc07": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc08": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc09": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc10": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc11": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc12": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc13": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc14": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc15": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc16": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Arc17": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.016,
+    0.016,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 16,
+   "faces": 10
+  },
+  "Plan_Door_Gap": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.14,
+    1.1,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Door_Leaf": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.1,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_LabelName_A": {
+   "type": "FONT",
+   "loc": [
+    0.9,
+    -1.52,
+    3.3
+   ],
+   "dim": [
+    0.467,
+    0.084,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_LabelName_B": {
+   "type": "FONT",
+   "loc": [
+    2.84,
+    -0.2,
+    3.3
+   ],
+   "dim": [
+    0.483,
+    0.091,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_LabelName_C": {
+   "type": "FONT",
+   "loc": [
+    2.4,
+    -1.9,
+    3.3
+   ],
+   "dim": [
+    0.734,
+    0.113,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_LabelName_C2": {
+   "type": "FONT",
+   "loc": [
+    2.4,
+    -2.52,
+    3.3
+   ],
+   "dim": [
+    0.65,
+    0.09,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_LabelName_D": {
+   "type": "FONT",
+   "loc": [
+    4.19,
+    -0.28,
+    3.3
+   ],
+   "dim": [
+    0.504,
+    0.095,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_LabelName_F": {
+   "type": "FONT",
+   "loc": [
+    5.345,
+    -0.455,
+    3.3
+   ],
+   "dim": [
+    0.536,
+    0.113,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Label_A": {
+   "type": "FONT",
+   "loc": [
+    0.9,
+    -1.2,
+    3.3
+   ],
+   "dim": [
+    0.221,
+    0.236,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Label_B": {
+   "type": "FONT",
+   "loc": [
+    2.19,
+    -0.2,
+    3.3
+   ],
+   "dim": [
+    0.131,
+    0.173,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Label_C": {
+   "type": "FONT",
+   "loc": [
+    1.6,
+    -2.6,
+    3.3
+   ],
+   "dim": [
+    0.153,
+    0.179,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Label_D": {
+   "type": "FONT",
+   "loc": [
+    3.59,
+    -0.28,
+    3.3
+   ],
+   "dim": [
+    0.143,
+    0.173,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Label_F": {
+   "type": "FONT",
+   "loc": [
+    5.345,
+    -0.905,
+    3.3
+   ],
+   "dim": [
+    0.159,
+    0.236,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Label_Queue": {
+   "type": "FONT",
+   "loc": [
+    3.94,
+    -1.85,
+    3.3
+   ],
+   "dim": [
+    0.796,
+    0.145,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ]
+  },
+  "Plan_Label_Tech": {
+   "type": "FONT",
+   "loc": [
+    5.345,
+    -2.527,
+    3.3
+   ],
+   "dim": [
+    0.368,
+    0.095,
+    0.002
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Text"
+   ]
+  },
+  "Plan_Sun": {
+   "type": "LIGHT",
+   "loc": [
+    3.0,
+    -1.5,
+    8.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "SUN",
+    "energy": 3.0,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ]
+   }
+  },
+  "Plan_Zone_A_b": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.7,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_A_l": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    1.02,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_A_r": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    1.02,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_A_t": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.7,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_B_b": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.4,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_B_l": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.4,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_B_r": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.4,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_B_t": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.4,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_C_i": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.8,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_C_l": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    1.4,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_C_m": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.0,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_C_r": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.6,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_C_t": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.6,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_D_b": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.25,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_D_l": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.5,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_D_r": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.5,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_D_t": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.25,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_F_b": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.2,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_F_l": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    2.0,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_F_r": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    2.0,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_F_t": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.2,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Queue_b": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.5,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Queue_l": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    2.3,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Queue_r": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    2.3,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Queue_t": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.5,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Dim"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Tech_b": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.2,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Tech_l": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.835,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Tech_r": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.012,
+    0.835,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Plan_Zone_Tech_t": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.2,
+    0.012,
+    0.01
+   ],
+   "parent": null,
+   "collections": [
+    "Plan_Annotations"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Plan_Line"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Room_Ceiling": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    6.2,
+    3.2,
+    0.1
+   ],
+   "parent": null,
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Ceiling"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Room_Crown_Moulding": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    6.0,
+    3.0,
+    0.13
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 64,
+   "faces": 48
+  },
+  "Room_Downlight1_Face": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.11,
+    0.11,
+    0.004
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Downlight"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight1_Light": {
+   "type": "LIGHT",
+   "loc": [
+    0.8,
+    -0.75,
+    2.97
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 14.125,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.11,
+     0.25
+    ]
+   }
+  },
+  "Room_Downlight1_Trim": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.016
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight2_Face": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.11,
+    0.11,
+    0.004
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Downlight"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight2_Light": {
+   "type": "LIGHT",
+   "loc": [
+    2.35,
+    -0.75,
+    2.97
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 14.125,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.11,
+     0.25
+    ]
+   }
+  },
+  "Room_Downlight2_Trim": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.016
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight3_Face": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.11,
+    0.11,
+    0.004
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Downlight"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight3_Light": {
+   "type": "LIGHT",
+   "loc": [
+    3.9,
+    -0.75,
+    2.97
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 14.125,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.11,
+     0.25
+    ]
+   }
+  },
+  "Room_Downlight3_Trim": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.016
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight4_Face": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.11,
+    0.11,
+    0.004
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Downlight"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight4_Light": {
+   "type": "LIGHT",
+   "loc": [
+    0.8,
+    -2.25,
+    2.97
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 14.125,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.11,
+     0.25
+    ]
+   }
+  },
+  "Room_Downlight4_Trim": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.016
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight5_Face": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.11,
+    0.11,
+    0.004
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Downlight"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight5_Light": {
+   "type": "LIGHT",
+   "loc": [
+    2.35,
+    -2.25,
+    2.97
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 14.125,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.11,
+     0.25
+    ]
+   }
+  },
+  "Room_Downlight5_Trim": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.016
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight6_Face": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.11,
+    0.11,
+    0.004
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Downlight"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlight6_Light": {
+   "type": "LIGHT",
+   "loc": [
+    3.9,
+    -2.25,
+    2.97
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 14.125,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.11,
+     0.25
+    ]
+   }
+  },
+  "Room_Downlight6_Trim": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.15,
+    0.15,
+    0.016
+   ],
+   "parent": "Room_Downlights",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "verts": 64,
+   "faces": 34
+  },
+  "Room_Downlights": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false
+  },
+  "Room_Entrance_ArchFrame": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.03,
+    1.24,
+    2.27
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Paint_Skirting"
+   ],
+   "verts": 124,
+   "faces": 64
+  },
+  "Room_Floor": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    6.0,
+    3.0,
+    0.05
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Floor_Grey_D9DEE4"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Room_Pendant1": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false
+  },
+  "Room_Pendant1_Canopy": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    1.56,
+    0.12,
+    0.03
+   ],
+   "parent": "Room_Pendant1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Room_Pendant1_Globe1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.22
+   ],
+   "parent": "Room_Pendant1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Globe"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "Room_Pendant1_Globe2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.22
+   ],
+   "parent": "Room_Pendant1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Globe"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "Room_Pendant1_Globe3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.22
+   ],
+   "parent": "Room_Pendant1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Globe"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "Room_Pendant1_Light": {
+   "type": "LIGHT",
+   "loc": [
+    2.1,
+    -1.85,
+    2.28
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 7.5,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     1.5,
+     0.25
+    ]
+   }
+  },
+  "Room_Pendant1_Wire1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.005,
+    0.006,
+    0.81
+   ],
+   "parent": "Room_Pendant1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "Room_Pendant1_Wire2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.005,
+    0.006,
+    0.98
+   ],
+   "parent": "Room_Pendant1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "Room_Pendant1_Wire3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.005,
+    0.006,
+    0.81
+   ],
+   "parent": "Room_Pendant1",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "Room_Pendant2": {
+   "type": "EMPTY",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false
+  },
+  "Room_Pendant2_Canopy": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.86,
+    0.12,
+    0.03
+   ],
+   "parent": "Room_Pendant2",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "White"
+   ],
+   "modifiers": [
+    "BEVEL:Bevel"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Room_Pendant2_Globe1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.22
+   ],
+   "parent": "Room_Pendant2",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Globe"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "Room_Pendant2_Globe2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.22
+   ],
+   "parent": "Room_Pendant2",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Globe"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "Room_Pendant2_Globe3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.22,
+    0.22,
+    0.22
+   ],
+   "parent": "Room_Pendant2",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Globe"
+   ],
+   "verts": 266,
+   "faces": 288
+  },
+  "Room_Pendant2_Light": {
+   "type": "LIGHT",
+   "loc": [
+    0.9,
+    -0.55,
+    2.28
+   ],
+   "dim": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "parent": null,
+   "collections": [
+    "Lights"
+   ],
+   "hidden_render": true,
+   "light": {
+    "type": "AREA",
+    "energy": 7.5,
+    "color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "size": [
+     0.8,
+     0.25
+    ]
+   }
+  },
+  "Room_Pendant2_Wire1": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.005,
+    0.006,
+    0.81
+   ],
+   "parent": "Room_Pendant2",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "Room_Pendant2_Wire2": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.005,
+    0.006,
+    0.98
+   ],
+   "parent": "Room_Pendant2",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "Room_Pendant2_Wire3": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.005,
+    0.006,
+    0.81
+   ],
+   "parent": "Room_Pendant2",
+   "collections": [
+    "Ceiling"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "BlackPlastic"
+   ],
+   "verts": 12,
+   "faces": 8
+  },
+  "Room_Skirting_Blue": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    6.0,
+    3.0,
+    0.25
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Paint_Skirting"
+   ],
+   "verts": 40,
+   "faces": 30
+  },
+  "Room_Wall_Back": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    6.2,
+    0.1,
+    3.0
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Paint_Wall"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Room_Wall_Entrance": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    6.2,
+    0.1,
+    3.0
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Paint_Wall"
+   ],
+   "verts": 8,
+   "faces": 6
+  },
+  "Room_Wall_Left": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    3.0,
+    3.0
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Paint_Wall"
+   ],
+   "verts": 70,
+   "faces": 37
+  },
+  "Room_Wall_Right": {
+   "type": "MESH",
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dim": [
+    0.1,
+    3.0,
+    3.0
+   ],
+   "parent": null,
+   "collections": [
+    "Room"
+   ],
+   "hidden_render": false,
+   "materials": [
+    "Paint_Wall"
+   ],
+   "verts": 8,
+   "faces": 6
+  }
+ },
+ "materials": {
+  "A_Frame1_Photo_mat": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeTexImage"
+   ],
+   "images": [
+    "tranh-1.png"
+   ],
+   "principled": {
+    "Base Color": "linked:ShaderNodeTexImage",
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "A_Frame2_Photo_mat": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeTexImage"
+   ],
+   "images": [
+    "tranh-2.png"
+   ],
+   "principled": {
+    "Base Color": "linked:ShaderNodeTexImage",
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "A_Frame3_Photo_mat": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeTexImage"
+   ],
+   "images": [
+    "tranh-3.png"
+   ],
+   "principled": {
+    "Base Color": "linked:ShaderNodeTexImage",
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Aluminium": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.624,
+     0.624,
+     0.624,
+     1.0
+    ],
+    "Roughness": 0.08,
+    "Metallic": 1.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BlackPlastic": {
+   "users": 12,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.004,
+     0.004,
+     0.004,
+     1.0
+    ],
+    "Roughness": 0.45,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BlindBar_DeepBlue": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.539,
+     0.468,
+     0.356,
+     1.0
+    ],
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BlindBar_Ivory": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.309,
+     0.258,
+     0.202,
+     1.0
+    ],
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BlindBar_Sky": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.701,
+     0.687,
+     0.658,
+     1.0
+    ],
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.001": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.694,
+     0.597,
+     0.462,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.002": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.003": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.004": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.88,
+     0.791,
+     0.644,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.005": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.006": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.007": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.008": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.694,
+     0.597,
+     0.462,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.009": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.010": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.863,
+     0.815,
+     0.745,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.011": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.012": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.013": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.863,
+     0.815,
+     0.745,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.014": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BookM.015": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.88,
+     0.791,
+     0.644,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "BoothFloor": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.509,
+     0.485,
+     0.44,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Bulb_2700K": {
+   "users": 26,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBlackbody",
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": "linked:ShaderNodeBlackbody",
+    "Emission Strength": 14.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Butter_Text": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Ceiling": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.939,
+     0.922,
+     0.888,
+     1.0
+    ],
+    "Roughness": 0.95,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Charcoal": {
+   "users": 5,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.042,
+     0.044,
+     0.048,
+     1.0
+    ],
+    "Roughness": 0.9,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Charcoal_Dark": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.019,
+     0.019,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Cream_Booth_Interior": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.88,
+     0.823,
+     1.0
+    ],
+    "Roughness": 0.95,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Downlight": {
+   "users": 6,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBlackbody",
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": "linked:ShaderNodeBlackbody",
+    "Emission Strength": 8.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Floor_Grey_D9DEE4": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeMapping",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeTexCoord",
+    "ShaderNodeTexNoise",
+    "ShaderNodeValToRGB"
+   ],
+   "principled": {
+    "Base Color": "linked:ShaderNodeValToRGB",
+    "Roughness": 0.15,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Frame_Black": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Globe": {
+   "users": 6,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     0.815,
+     0.88,
+     1.0
+    ],
+    "Emission Strength": 3.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "GoldBall": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.88,
+     0.644,
+     0.195,
+     1.0
+    ],
+    "Roughness": 0.15,
+    "Metallic": 1.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Hat_Pink": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.672,
+     0.571,
+     0.423,
+     1.0
+    ],
+    "Roughness": 0.8,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Hat_Straw": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.896,
+     0.768,
+     0.539,
+     1.0
+    ],
+    "Roughness": 0.8,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "HatBox": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.694,
+     0.597,
+     0.462,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Inox": {
+   "users": 4,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.485,
+     0.509,
+     0.533,
+     1.0
+    ],
+    "Roughness": 0.35,
+    "Metallic": 1.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Leaf": {
+   "users": 12,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.212,
+     0.434,
+     0.141,
+     1.0
+    ],
+    "Roughness": 0.7,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Leatherette_Ivory": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.863,
+     0.823,
+     0.761,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "LED_5000K": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBlackbody",
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": "linked:ShaderNodeBlackbody",
+    "Emission Strength": 6.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Marble_White": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.965,
+     0.939,
+     0.939,
+     1.0
+    ],
+    "Roughness": 0.1,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Melamine_Plain": {
+   "users": 8,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.45,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Mirror_Glossy": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.888,
+     0.905,
+     0.922,
+     1.0
+    ],
+    "Roughness": 0.02,
+    "Metallic": 1.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Octabox_Neutral": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBlackbody",
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": "linked:ShaderNodeBlackbody",
+    "Emission Strength": 6.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Paint_Skirting": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.85,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Paint_Wall": {
+   "users": 4,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.863,
+     0.815,
+     0.745,
+     1.0
+    ],
+    "Roughness": 0.92,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.88,
+     0.791,
+     0.644,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.001": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.863,
+     0.823,
+     0.761,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.002": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.003": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.004": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.863,
+     0.823,
+     0.761,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.005": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.88,
+     0.791,
+     0.644,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.006": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.007": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.694,
+     0.597,
+     0.462,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.008": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.009": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.694,
+     0.597,
+     0.462,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.010": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "PileM.011": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.88,
+     0.791,
+     0.644,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Plan_Dim": {
+   "users": 29,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     0.016,
+     0.016,
+     0.016,
+     1.0
+    ],
+    "Emission Strength": 1.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Plan_Line": {
+   "users": 43,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     0.016,
+     0.016,
+     0.016,
+     1.0
+    ],
+    "Emission Strength": 1.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Plan_Text": {
+   "users": 53,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Emission Strength": 1.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Pot": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Rack_Back": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.799,
+     0.776,
+     0.73,
+     1.0
+    ],
+    "Roughness": 0.6,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Rack_Paint": {
+   "users": 5,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.896,
+     0.871,
+     0.823,
+     1.0
+    ],
+    "Roughness": 0.55,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Rem_DeepBlue": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeBump",
+    "ShaderNodeCombineXYZ",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeSeparateXYZ",
+    "ShaderNodeTexCoord",
+    "ShaderNodeTexNoise",
+    "ShaderNodeValToRGB"
+   ],
+   "principled": {
+    "Base Color": "linked:ShaderNodeValToRGB",
+    "Roughness": 0.95,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Rem_Ivory": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeBump",
+    "ShaderNodeCombineXYZ",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeSeparateXYZ",
+    "ShaderNodeTexCoord",
+    "ShaderNodeTexNoise",
+    "ShaderNodeValToRGB"
+   ],
+   "principled": {
+    "Base Color": "linked:ShaderNodeValToRGB",
+    "Roughness": 0.95,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Rem_Sky": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeBump",
+    "ShaderNodeCombineXYZ",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeSeparateXYZ",
+    "ShaderNodeTexCoord",
+    "ShaderNodeTexNoise",
+    "ShaderNodeValToRGB"
+   ],
+   "principled": {
+    "Base Color": "linked:ShaderNodeValToRGB",
+    "Roughness": 0.95,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Ribbon": {
+   "users": 3,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.028,
+     0.025,
+     0.023,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Screen": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     0.855,
+     0.888,
+     0.93,
+     1.0
+    ],
+    "Emission Strength": 1.6,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Sofa_Boucle": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeBump",
+    "ShaderNodeOutputMaterial",
+    "ShaderNodeTexCoord",
+    "ShaderNodeTexNoise"
+   ],
+   "principled": {
+    "Base Color": [
+     0.694,
+     0.597,
+     0.462,
+     1.0
+    ],
+    "Roughness": 0.95,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Tube_2700K": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBlackbody",
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": "linked:ShaderNodeBlackbody",
+    "Emission Strength": 12.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Vase": {
+   "users": 6,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.863,
+     0.823,
+     0.761,
+     1.0
+    ],
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Vase2": {
+   "users": 2,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.905,
+     0.888,
+     0.855,
+     1.0
+    ],
+    "Roughness": 0.4,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "Velvet_Door": {
+   "users": 1,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.672,
+     0.571,
+     0.423,
+     1.0
+    ],
+    "Roughness": 0.95,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  },
+  "White": {
+   "users": 16,
+   "use_nodes": true,
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ],
+   "principled": {
+    "Base Color": [
+     0.888,
+     0.888,
+     0.863,
+     1.0
+    ],
+    "Roughness": 0.5,
+    "Metallic": 0.0,
+    "Emission Color": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Emission Strength": 0.0,
+    "Transmission Weight": 0.0,
+    "Alpha": 1.0
+   }
+  }
+ },
+ "images": {
+  "tranh-1.png": {
+   "size": [
+    640,
+    980
+   ],
+   "path": "//assets\\kem\\tranh-1.png"
+  },
+  "tranh-2.png": {
+   "size": [
+    640,
+    980
+   ],
+   "path": "//assets\\kem\\tranh-2.png"
+  },
+  "tranh-3.png": {
+   "size": [
+    640,
+    980
+   ],
+   "path": "//assets\\kem\\tranh-3.png"
+  }
+ }
+}
