@@ -1,0 +1,238 @@
+{
+  "_huong_dan": "Sửa số trong file này rồi bấm ve-nhap.bat để xem ảnh nháp mới. Đơn vị: mét. Toạ độ theo brief: X 0→dài (trái→phải nhìn từ lối vào), Y 0 (tường trong cùng)→rộng (tường lối vào). Màu viết dạng #RRGGBB. Đừng xoá dấu phẩy/ngoặc. Nếu file lỗi, chương trình dùng giá trị mặc định và báo lỗi.",
+  "y_tuong": "kem_go",
+  "_y_tuong_ghi_chu": "Chọn \"kem_go\" (Kem – Gỗ sồi, vật liệu màu có sẵn), \"barbie\" (hồng) hoặc \"sky\" (xanh trời). Ảnh lưu ở renders\\final_<tên> (sky: renders\\final).",
+  "phong": {
+    "dai_x": 6.0,
+    "rong_y": 3.0,
+    "cao_z": 3.0,
+    "cua_vao_cao": 2.2,
+    "cua_vao_y0": 1.8,
+    "cua_vao_y1": 2.9,
+    "_cua_vao_ghi_chu": "Cửa ra vào ở TƯỜNG TRÁI (X = 0), từ Y cua_vao_y0 tới cua_vao_y1 (gần góc phía trước). Tường phía trước (Y = rộng) kín."
+  },
+  "buong": {
+    "_ghi_chu": "Buồng chạy DỌC tường phải trong cùng, dài suốt chiều rộng phòng, sát góc trong cùng. dai = chiều dài buồng (dọc tường phải); rong_lot_long = bề rộng lọt lòng (đã trừ vách); khoang_chup_dai = chiều dài lọt lòng khoang chụp; phần còn lại là khoang kỹ thuật; khoang_cach_may_khach = khoảng cách từ mặt khách tới ống kính.",
+    "dai": 3.0,
+    "rong_lot_long": 1.2,
+    "khoang_chup_dai": 2.0,
+    "khoang_cach_may_khach": 1.2,
+    "cao": 2.3,
+    "day_vach": 0.055,
+    "den_chup_rong": 0.6,
+    "den_chup_cao": 0.18,
+    "den_chup_z": 1.65,
+    "_den_chup_ghi_chu": "Đèn chụp chính: tấm đèn hình viên thuốc nằm ngang gắn phẳng trên vách camera, ngay trên ống kính (rộng x cao, tâm cao den_chup_z). Không còn octabox trên trần."
+  },
+  "bo_tri": {
+    "_ghi_chu": "Vị trí các khu. Y của quầy: mat_truoc = mép mặt quầy phía khách, mat_sau = mép phía nhân viên (chỗ nhân viên đứng = rong_y - mat_sau).",
+    "gia_dao_cu_x0": 2.04,
+    "gia_dao_cu_dai": 1.4,
+    "ban_guong_x0": 3.44,
+    "ban_dung_cao": 0.95,
+    "sofa_tam_y": 1.1,
+    "sofa_dai": 1.6,
+    "quay_x0": 1.3,
+    "quay_x1": 2.9,
+    "quay_mat_truoc_y": 1.6,
+    "quay_mat_sau_y": 2.2,
+    "sofa_x0": 0.02,
+    "sofa_do_sau": 0.9,
+    "guong_cao_tren_ban": 0.15,
+    "sofa_kieu": "cloud",
+    "sofa_cao": 0.88,
+    "_sofa_ghi_chu": "sofa_kieu: \"cloud\" (sofa đám mây bouclé), \"bang\" (băng ghế đóng liền tường lưng 3 vòm bọc simili, sâu bang_do_sau) hoặc \"thang\" (sofa thẳng cũ).",
+    "sofa_tuong": "sau",
+    "sofa_vi_tri_x": 0.9,
+    "_sofa_vi_tri_ghi_chu": "sofa_tuong: \"sau\" = áp tường trong cùng (cạnh kệ đạo cụ và bàn gương), tâm X = sofa_vi_tri_x; chỉ áp dụng cho sofa_kieu \"cloud\".",
+    "hinh_nom": false,
+    "_hinh_nom_ghi_chu": "hinh_nom: true để hiện 3 hình nộm ngồi trên ghế băng khi cần kiểm tra tỉ lệ; mặc định false.",
+    "quay_cao": 1.1,
+    "quay_cao_lam_viec": 0.9,
+    "_quay_ghi_chu": "Quầy chữ L: cạnh dài X quay_x0-quay_x1, mặt khách ở Y = quay_mat_truoc_y, sâu (quay_mat_sau_y - quay_mat_truoc_y); cạnh ngắn ở phía cửa (X quay_x0 .. +sâu) chạy tới tường trước. Mặt giao dịch cao quay_cao, mặt làm việc quay_cao_lam_viec.",
+    "bang_do_sau": 0.55
+  },
+  "den": {
+    "_ghi_chu": "am_tran_vi_tri = danh sách [X, Y] từng đèn âm trần. lumen/watt là số liệu thiết kế thật; nang_luong_blender chỉ để chỉnh độ sáng ảnh render.",
+    "am_tran_vi_tri": [
+      [
+        0.8,
+        0.75
+      ],
+      [
+        2.35,
+        0.75
+      ],
+      [
+        3.9,
+        0.75
+      ],
+      [
+        0.8,
+        2.25
+      ],
+      [
+        2.35,
+        2.25
+      ],
+      [
+        3.9,
+        2.25
+      ]
+    ],
+    "am_tran_lumen": 1800,
+    "am_tran_watt": 18,
+    "am_tran_kelvin": 4000,
+    "nang_luong_blender": 113,
+    "ap_dung_ti_le_cycles": 0.125,
+    "am_kelvin_theo_y_tuong": {
+      "sky": 2700,
+      "barbie": 3400,
+      "kem_go": 3000
+    },
+    "am_tran_kelvin_theo_y_tuong": {
+      "sky": 4000,
+      "barbie": 6000,
+      "kem_go": 6000
+    },
+    "_ghi_chu_mau_den": "am_kelvin = màu ánh ấm (bóng gương, đèn tuýp, đèn viền chữ), am_tran_kelvin = màu đèn chung. Kelvin thấp = vàng hơn. Số Blender lệch số thật: 6500 ≈ trắng."
+  },
+  "render": {
+    "ban_dep_mau_sampling": 128,
+    "ban_dep_canh_dai_px": 1600,
+    "nhap_ti_le_phan_tram": 50
+  },
+  "mau_theo_y_tuong": {
+    "sky": {
+      "tuong": "#A2CFFE",
+      "tran": "#D6E9FF",
+      "chan_tuong": "#6FA8E8",
+      "san": "#D9DEE4",
+      "vo_buong": "#A2CFFE",
+      "trong_buong": "#F4F1EA",
+      "rem_cua_buong": "#FFE98A",
+      "chu_noi": "#FFE98A",
+      "nhom": "#B4B8BD",
+      "sofa": "#6FA8E8",
+      "quay": "#6FA8E8",
+      "ghe_trang": "#ECE7DA",
+      "rem_phong_1": "#A2CFFE",
+      "rem_phong_2": "#6FA8E8",
+      "rem_phong_3": "#F4F1EA"
+    },
+    "barbie": {
+      "tuong": "#FADCE7",
+      "tran": "#FFF6F9",
+      "chan_tuong": "#EE6FA5",
+      "san": "#F4EEF0",
+      "vo_buong": "#F9C6DA",
+      "trong_buong": "#F4F1EA",
+      "rem_cua_buong": "#E6508F",
+      "chu_noi": "#FF5FAE",
+      "nhom": "#D6D9DD",
+      "sofa": "#F4A9C6",
+      "quay": "#F7A8CB",
+      "ghe_trang": "#FCE4EC",
+      "rem_phong_1": "#F8C1D6",
+      "rem_phong_2": "#E8709F",
+      "rem_phong_3": "#F4F1EA"
+    },
+    "kem_go": {
+      "tuong": "#EFE9E0",
+      "tran": "#F8F6F2",
+      "chan_tuong": "#F4F2EE",
+      "san": "#D9D2C7",
+      "vo_buong": "#C9A27A",
+      "trong_buong": "#F4F1EA",
+      "rem_cua_buong": "#D6C7AE",
+      "chu_noi": "#2F2C2A",
+      "nhom": "#CFCFCF",
+      "sofa": "#D9CBB5",
+      "quay": "#F4F2EE",
+      "ghe_trang": "#EFEAE2",
+      "rem_phong_1": "#F2F0EC",
+      "rem_phong_2": "#D8CAB3",
+      "rem_phong_3": "#A89A8A",
+      "ke": "#F3F0EA",
+      "do_go": "#F4F2EE",
+      "_do_go_ghi_chu": "do_go = màu melamine trơn của vỏ buồng, quầy, bàn trang điểm, khung gương, khung tranh (mặc định trắng; có thể đổi sang xám nhạt/kem trơn có sẵn).",
+      "_hai_hoa_ghi_chu": "Quy tắc 60-30-10: nền kem/trắng (tường, trần, sàn) – đồ lớn trắng + be (sofa, rèm cửa, rèm phông be lặp lại) – nhấn đen (chữ, trái tim, khung tranh, dây đèn) + xanh cây thật. Rèm phông 3 dùng nâu xám ấm (taupe) thay xám lạnh."
+    },
+    "dem_than": {
+      "tuong": "#3B3936",
+      "tran": "#45423E",
+      "chan_tuong": "#3B3936",
+      "san": "#9A938A",
+      "vo_buong": "#262524",
+      "trong_buong": "#F4F1EA",
+      "rem_cua_buong": "#E3DACB",
+      "chu_noi": "#B08D57",
+      "nhom": "#BFBFBF",
+      "sofa": "#E3DACB",
+      "quay": "#262524",
+      "ghe_trang": "#E3DACB",
+      "rem_phong_1": "#F2F0EC",
+      "rem_phong_2": "#D8CAB3",
+      "rem_phong_3": "#2A2928",
+      "ke": "#262524",
+      "do_go": "#262524"
+    },
+    "xanh_reu": {
+      "tuong": "#3E4A3F",
+      "tran": "#EDE7DC",
+      "chan_tuong": "#3E4A3F",
+      "san": "#B9B0A4",
+      "vo_buong": "#EFEAE2",
+      "trong_buong": "#F4F1EA",
+      "rem_cua_buong": "#A8744A",
+      "chu_noi": "#B08D57",
+      "nhom": "#BFBFBF",
+      "sofa": "#A8744A",
+      "quay": "#EFEAE2",
+      "ghe_trang": "#EFEAE2",
+      "rem_phong_1": "#EFE6D8",
+      "rem_phong_2": "#4A5A4B",
+      "rem_phong_3": "#7A5A43",
+      "ke": "#EFEAE2",
+      "do_go": "#EFEAE2"
+    },
+    "mocha": {
+      "tuong": "#6B5445",
+      "tran": "#EDE5DA",
+      "chan_tuong": "#6B5445",
+      "san": "#CFC4B6",
+      "vo_buong": "#F2EDE6",
+      "trong_buong": "#F4F1EA",
+      "rem_cua_buong": "#4A382D",
+      "chu_noi": "#2A2725",
+      "nhom": "#BFBFBF",
+      "sofa": "#E4D8C6",
+      "quay": "#F2EDE6",
+      "ghe_trang": "#E4D8C6",
+      "rem_phong_1": "#EFE6D8",
+      "rem_phong_2": "#8C6E5A",
+      "rem_phong_3": "#2A2725",
+      "ke": "#F2EDE6",
+      "do_go": "#F2EDE6"
+    },
+    "navy": {
+      "tuong": "#22303F",
+      "tran": "#EFEAE2",
+      "chan_tuong": "#22303F",
+      "san": "#C9C1B5",
+      "vo_buong": "#F2EFEA",
+      "trong_buong": "#F4F1EA",
+      "rem_cua_buong": "#2A3A4F",
+      "chu_noi": "#B08D57",
+      "nhom": "#BFBFBF",
+      "sofa": "#D9CBB5",
+      "quay": "#F2EFEA",
+      "ghe_trang": "#D9CBB5",
+      "rem_phong_1": "#F2F0EC",
+      "rem_phong_2": "#D8CAB3",
+      "rem_phong_3": "#2A3A4F",
+      "ke": "#F2EFEA",
+      "do_go": "#F2EFEA"
+    }
+  }
+}
