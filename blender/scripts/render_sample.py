@@ -13,7 +13,7 @@ def parse_args():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default=os.path.join(os.getcwd(), "blender", "output"))
-    return parser.parse_args(argv)
+    return parser.parse_known_args(argv)[0]
 
 
 def build_scene():

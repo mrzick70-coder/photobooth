@@ -1,18 +1,19 @@
 name: Blender render
 
 # Runs on the self-hosted Windows runner (label "blender") that has Blender installed.
-# Triggers: push of a script under blender/scripts/, or manual run with a chosen script.
+# Which script runs: the workflow_dispatch input, else the name in blender/run.txt.
+# The scene file lives on the runner machine: repo variable BLEND_FILE, else C:\photobooth\studio.blend.
 on:
   push:
     paths:
       - "blender/scripts/**"
+      - "blender/run.txt"
       - ".github/workflows/blender.yml"
   workflow_dispatch:
     inputs:
       script:
         description: "Script under blender/scripts/ to run"
-        required: true
-        default: "render_sample.py"
+        required: false
 
 permissions:
   contents: write
@@ -24,10 +25,12 @@ concurrency:
 jobs:
   render:
     runs-on: [self-hosted, windows, blender]
-    timeout-minutes: 60
+    timeout-minutes: 120
     defaults:
       run:
         shell: powershell
+    env:
+      BLEND_FILE: ${{ vars.BLEND_FILE || 'C:\photobooth\studio.blend' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,10 +49,13 @@ jobs:
       - name: Run script
         run: |
           $script = "${{ github.event.inputs.script }}"
-          if (-not $script) { $script = "render_sample.py" }
-          $out = Join-Path $env:GITHUB_WORKSPACE "blender\output"
+          if (-not $script) { $script = (Get-Content "blender\run.txt" -TotalCount 1).Trim() }
+          if (-not (Test-Path "blender\scripts\$script")) { throw "Script not found: blender\scripts\$script" }
+          $name = [IO.Path]::GetFileNameWithoutExtension($script)
+          $out = Join-Path $env:GITHUB_WORKSPACE "blender\output\$name"
           New-Item -ItemType Directory -Force -Path $out | Out-Null
-          & $env:BLENDER -b --factory-startup -P "blender\scripts\$script" -- --out "$out"
+          Write-Host "Script: $script  Blend: $env:BLEND_FILE  Output: $out"
+          & $env:BLENDER -b -P "blender\scripts\$script" -- --blend "$env:BLEND_FILE" --out "$out"
           if ($LASTEXITCODE -ne 0) { throw "Blender exited with code $LASTEXITCODE" }
           Get-ChildItem $out
 
@@ -66,5 +72,6 @@ jobs:
           git add blender/output
           git diff --cached --quiet
           if ($LASTEXITCODE -eq 0) { Write-Host "No new renders"; exit 0 }
-          git commit -m "Add Blender renders from run ${{ github.run_number }} [skip ci]"
+          git commit -m "Add Blender output from run ${{ github.run_number }} [skip ci]"
+          git pull --rebase origin "${{ github.ref_name }}"
           git push origin "HEAD:${{ github.ref_name }}"
