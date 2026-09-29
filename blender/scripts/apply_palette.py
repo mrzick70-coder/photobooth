@@ -44,7 +44,18 @@ PALETTES = {
         "curtain": "#E3DACB", "accent": "#B08D57", "accent_metal": True,
         "blinds": ["#F2F0EC", "#D8CAB3", "#2A2928"],
     },
+    # Budget concept: one oxblood colour drenched over walls, ceiling, skirting and the drywall booth
+    # (paint is the cheapest high-impact finish), cream furniture, black/cream checker floor, brass,
+    # no reception counter (self-service).
+    "cherry": {
+        "walls": "#5A1E26", "ceiling": "#5A1E26", "woodwork": "#EDE4D8", "sofa": "#EDE4D8",
+        "curtain": "#E9DFD0", "accent": "#B08D57", "accent_metal": True,
+        "blinds": ["#F2F0EC", "#E6C3BE", "#2A2928"],
+        "skirting": "#5A1E26", "booth_shell": "#5A1E26", "floor_checker": True,
+        "brass_objects": ["D_Mirror_Frame"], "hide_prefixes": ["C_"],
+    },
 }
+DEFAULT_PALETTE = "cherry"
 
 # Materials in the file, grouped by palette role.
 MATERIALS = {
@@ -77,7 +88,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--blend", required=True)
     parser.add_argument("--out", required=True)
-    parser.add_argument("--palette", default="dem_than", choices=sorted(PALETTES))
+    parser.add_argument("--palette", default=DEFAULT_PALETTE, choices=sorted(PALETTES))
     parser.add_argument("--no-render", action="store_true")
     return parser.parse_args(argv)
 
@@ -286,6 +297,29 @@ def mount_mirror_bulbs(scene, room_center):
            f"(frame r={outer:.3f}, glass r={inner:.3f}), {skipped} skipped at the vanity top")
 
 
+def apply_extras(scene, pal):
+    """Optional palette keys for concepts that change more than colours."""
+    if "skirting" in pal:
+        recolor("Paint_Skirting", pal["skirting"])
+    if "booth_shell" in pal:
+        mat, bsdf = fx.new_material("PB_Booth_Paint")
+        bsdf.inputs["Base Color"].default_value = fx.hex_rgba(pal["booth_shell"])
+        bsdf.inputs["Roughness"].default_value = 0.8
+        shell = [scene.objects[n] for n in ("Booth_Shell_MDF", "Booth_Roof") if n in scene.objects]
+        fx.assign(shell, mat, "booth shell")
+    if pal.get("floor_checker") and "Room_Floor" in scene.objects:
+        fx.assign([scene.objects["Room_Floor"]], fx.mat_checker(), "floor")
+    brass = [scene.objects[n] for n in pal.get("brass_objects", []) if n in scene.objects]
+    if brass:
+        fx.assign(brass, fx.mat_brass(), "brass")
+    prefixes = tuple(pal.get("hide_prefixes", []))
+    if prefixes:
+        hidden = [o.name for o in scene.objects if o.name.startswith(prefixes)]
+        for name in hidden:
+            scene.objects[name].hide_render = True
+        fx.log(f"hidden: {hidden}")
+
+
 def visible_blind(scene):
     return next((o for o in scene.objects
                  if o.name.startswith("F_Rem_") and o.name.endswith("_Spread") and not o.hide_render), None)
@@ -316,6 +350,7 @@ def main():
     for (rem, bar, _), color in zip(BLINDS, pal["blinds"]):
         recolor(rem, color)
         recolor(bar, darker(color, 0.7))
+    apply_extras(scene, pal)
     walls = [scene.objects[n] for n in fx.ROLES["walls"] if n in scene.objects]
     mount_mirror_bulbs(scene, sum(fx.bbox_world(walls), Vector()) / 2 if walls else Vector())
 
