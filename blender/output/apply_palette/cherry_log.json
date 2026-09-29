@@ -56,6 +56,7 @@
  "light PB_Booth_Wash1: SPOT 60W at (3.39, -1.23, 2.95)",
  "heart (neon): ['Booth_Heart'] -> PB_Neon_Pink",
  "entrance wall: bench, 13-strip gallery, QR pay point",
+ "kidney sofa: 1.64 m wide, 0.79 m deep, back 0.76 m, seat 0.4 m; replaces A_Sofa_Cloud",
  "mirror bulbs: 26 globe bulbs on brass sockets, ring r=0.532 m on the frame (frame r=0.565, glass r=0.500), 0 skipped at the vanity top",
  "saved C:\\Users\\vietnamesefries\\Downloads\\Photobooth\\Photobooth_Cinema_cherry.blend",
  "rendered cherry_Cam_01a_cabin_rem01_trang.jpg",
