@@ -53,8 +53,14 @@ PALETTES = {
         "blinds": ["#F2F0EC", "#E6C3BE", "#2A2928"],
         "skirting": "#5A1E26", "booth_shell": "#5A1E26", "floor_checker": True,
         "brass_objects": ["D_Mirror_Frame"], "hide_prefixes": ["C_"],
+        "checker_tile": 0.5, "review_fixes": True,
     },
 }
+# Design review of the cherry concept (see apply_review_fixes).
+PENDANT_MIN_CLEARANCE = 2.1  # m above the floor for anything hanging over a walkway
+WARM_LIGHT = (1.0, 0.71, 0.42)  # ~2700K
+WARM_LIGHT_SKIP = ("Booth_Flash_Light",)  # the booth keeps neutral light for skin tones
+HEART_SCALE = 1.6  # the tallest heart that fits between the curtain head and the booth top
 DEFAULT_PALETTE = "cherry"
 
 # Materials in the file, grouped by palette role.
@@ -308,7 +314,7 @@ def apply_extras(scene, pal):
         shell = [scene.objects[n] for n in ("Booth_Shell_MDF", "Booth_Roof") if n in scene.objects]
         fx.assign(shell, mat, "booth shell")
     if pal.get("floor_checker") and "Room_Floor" in scene.objects:
-        fx.assign([scene.objects["Room_Floor"]], fx.mat_checker(), "floor")
+        fx.assign([scene.objects["Room_Floor"]], fx.mat_checker(pal.get("checker_tile", 0.4)), "floor")
     brass = [scene.objects[n] for n in pal.get("brass_objects", []) if n in scene.objects]
     if brass:
         fx.assign(brass, fx.mat_brass(), "brass")
@@ -318,6 +324,159 @@ def apply_extras(scene, pal):
         for name in hidden:
             scene.objects[name].hide_render = True
         fx.log(f"hidden: {hidden}")
+    if pal.get("review_fixes"):
+        apply_review_fixes(scene)
+
+
+def scale_mesh_verts(obj, fn):
+    """Apply fn(world_co) -> world_co to every vertex of a mesh whose geometry is baked in world space."""
+    mw, inv = obj.matrix_world, obj.matrix_world.inverted()
+    for v in obj.data.vertices:
+        v.co = inv @ fn(mw @ v.co)
+    obj.data.update()
+
+
+def raise_pendant(scene, prefix):
+    globes = [o for o in scene.objects if o.name.startswith(prefix + "_Globe")]
+    if not globes:
+        return
+    bottom = fx.bbox_world(globes)[0].z
+    lift = PENDANT_MIN_CLEARANCE - bottom
+    if lift <= 0:
+        return
+    for g in globes:
+        scale_mesh_verts(g, lambda co: co + Vector((0.0, 0.0, lift)))
+    for wire in (o for o in scene.objects if o.name.startswith(prefix + "_Wire")):
+        lo, hi = fx.bbox_world([wire])
+        top, length = hi.z, hi.z - lo.z
+        k = max(length - lift, 0.05) / length  # shorten from the bottom, keep the ceiling end
+        scale_mesh_verts(wire, lambda co: Vector((co.x, co.y, top - (top - co.z) * k)))
+    light = scene.objects.get(prefix + "_Light")
+    if light:
+        light.location.z += lift
+    fx.log(f"{prefix}: raised {lift:.2f} m, globes now clear the floor by {PENDANT_MIN_CLEARANCE} m")
+
+
+def box(name, lo, hi, mat, coll):
+    me = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    bmesh.ops.create_cube(bm, size=1.0)
+    size = Vector(hi) - Vector(lo)
+    bmesh.ops.scale(bm, vec=size, verts=bm.verts)
+    bmesh.ops.translate(bm, vec=(Vector(lo) + Vector(hi)) / 2, verts=bm.verts)
+    bm.to_mesh(me)
+    bm.free()
+    me.materials.append(mat)
+    obj = bpy.data.objects.new(name, me)
+    coll.objects.link(obj)
+    return obj
+
+
+def flat_material(name, hex_color, roughness=0.6):
+    mat, bsdf = fx.new_material(name)
+    bsdf.inputs["Base Color"].default_value = fx.hex_rgba(hex_color)
+    bsdf.inputs["Roughness"].default_value = roughness
+    return mat
+
+
+def add_entrance_wall(scene):
+    """Gallery of customer strips, a slim waiting bench and a QR pay point on the empty entrance wall."""
+    coll = bpy.data.collections.get("PB_Entrance") or bpy.data.collections.new("PB_Entrance")
+    if coll.name not in scene.collection.children:
+        scene.collection.children.link(coll)
+    wall = scene.objects.get("Room_Wall_Entrance")
+    face_y = fx.bbox_world([wall])[1].y if wall else -3.0  # inner face of the entrance wall
+    brass = fx.mat_brass()
+    cream = bpy.data.materials.get("Sofa_Boucle") or flat_material("PB_Cream", "#EDE4D8")
+    black = flat_material("PB_Black_Satin", "#1C1A19", 0.45)
+    paper = flat_material("PB_Strip_Paper", "#F4EEE6", 0.4)
+    tones = [flat_material(f"PB_Strip_Photo{i}", c, 0.35)
+             for i, c in enumerate(("#8A6F63", "#3B3230", "#B89A86", "#6E5A55"))]
+
+    # Everything is centred on the brand name above it.
+    brand = scene.objects.get("A_Brand_Text")
+    if brand:
+        blo, bhi = fx.bbox_world([brand])
+        cx = (blo.x + bhi.x) / 2
+    else:
+        cx = 2.1
+    # Bench: 2.0 m long, 0.35 m deep, seat at 0.47 m; walkway to the booth keeps > 1.6 m.
+    x0, x1, d = cx - 1.0, cx + 1.0, 0.35
+    box("PB_Bench_Base", (x0, face_y, 0.0), (x1, face_y + d, 0.38), black, coll)
+    box("PB_Bench_Cushion", (x0 + 0.02, face_y + 0.01, 0.38), (x1 - 0.02, face_y + d, 0.47), cream, coll)
+
+    # Gallery: one row of 2x6-inch strips in thin brass frames, below the brand name.
+    # Above the heads of seated guests (~1.2 m) and below the brand name (~1.7 m).
+    fw, fh, gap, z0 = 0.09, 0.22, 0.07, 1.32
+    count = 13
+    start = cx - (count * (fw + gap) - gap) / 2
+    for i in range(count):
+        x = start + i * (fw + gap)
+        box(f"PB_Gallery_Frame{i:02d}", (x, face_y, z0), (x + fw, face_y + 0.015, z0 + fh), brass, coll)
+        box(f"PB_Gallery_Paper{i:02d}", (x + 0.008, face_y + 0.015, z0 + 0.008),
+            (x + fw - 0.008, face_y + 0.018, z0 + fh - 0.008), paper, coll)
+        cell = (fh - 0.03) / 4
+        for j in range(4):
+            cz = z0 + fh - 0.012 - (j + 1) * cell
+            box(f"PB_Gallery_Photo{i:02d}_{j}", (x + 0.014, face_y + 0.018, cz + 0.004),
+                (x + fw - 0.014, face_y + 0.02, cz + cell - 0.002), tones[(i + j) % len(tones)], coll)
+
+    # QR pay point next to the booth: brass shelf and a black QR board.
+    box("PB_Pay_Shelf", (4.15, face_y, 1.0), (4.6, face_y + 0.22, 1.03), brass, coll)
+    box("PB_Pay_Board", (4.25, face_y + 0.02, 1.03), (4.5, face_y + 0.05, 1.33), black, coll)
+    box("PB_Pay_QR", (4.3, face_y + 0.05, 1.12), (4.45, face_y + 0.052, 1.27), paper, coll)
+    fx.log(f"entrance wall: bench, {count}-strip gallery, QR pay point")
+
+    cam_data = bpy.data.cameras.new("Cam_09_tuong_loi_vao")
+    cam_data.lens = 16
+    cam = bpy.data.objects.new("Cam_09_tuong_loi_vao", cam_data)
+    cam.location = (2.6, -0.6, 1.5)
+    cam.rotation_euler = (math.radians(88), 0.0, math.radians(180))
+    coll.objects.link(cam)
+
+
+def apply_review_fixes(scene):
+    # 1. Pendant cluster 1 hung at 1.77 m over the new walkway once the counter was removed.
+    raise_pendant(scene, "Room_Pendant1")
+
+    # 2. One metal: aluminium and stainless frames go brass; white trims and canopies take the ceiling paint.
+    for name in ("Aluminium", "Inox"):
+        recolor(name, "#B08D57", metal=True)
+    ceiling = bpy.data.materials.get("Ceiling")
+    trims = [o for o in scene.objects
+             if o.name.startswith(("Room_Downlight", "Room_Pendant")) and o.name.endswith(("_Trim", "_Canopy"))]
+    if ceiling and trims:
+        fx.assign(trims, ceiling, "downlight trims and pendant canopies")
+
+    # 3. Every lobby light at 2700K.
+    warm = [o for o in scene.objects if o.type == "LIGHT" and o.name not in WARM_LIGHT_SKIP]
+    for o in warm:
+        o.data.color = WARM_LIGHT
+    fx.log(f"{len(warm)} lights set to ~2700K")
+
+    # 4. The booth facade gets its own light, and a larger pink neon heart.
+    booth = scene.objects.get("Booth_Shell_MDF")
+    curtain = scene.objects.get("Booth_Door_Curtain")
+    if booth and curtain:
+        face_x = fx.bbox_world([booth])[0].x
+        clo, chi = fx.bbox_world([curtain])
+        cy = (clo.y + chi.y) / 2
+        for i, (dy, tz) in enumerate(((-0.35, 1.2), (0.35, 1.6))):
+            fx.add_light(f"PB_Booth_Wash{i}", "SPOT", (face_x - 1.3, cy + dy, 2.95), 60,
+                         color=WARM_LIGHT, aim=(face_x, cy + dy * 0.3, tz),
+                         spot_size=math.radians(38), spot_blend=0.5, shadow_soft_size=0.03)
+    heart = scene.objects.get("Booth_Heart")
+    if heart:
+        lo, hi = fx.bbox_world([heart])
+        c = (lo + hi) / 2
+        scale_mesh_verts(heart, lambda co: Vector((co.x - 0.004, c.y + (co.y - c.y) * HEART_SCALE,
+                                                   c.z + (co.z - c.z) * HEART_SCALE)))
+        neon = fx.mat_neon()
+        fx.set_input(principled(neon), ["Emission Strength"], 2.5)
+        fx.assign([heart], neon, "heart (neon)")
+
+    # 5. Use the empty entrance wall.
+    add_entrance_wall(scene)
 
 
 def visible_blind(scene):
