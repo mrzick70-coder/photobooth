@@ -847,6 +847,27 @@ def apply_review_fixes(scene, pal):
     add_entrance_wall(scene, pal)
 
 
+# Extra eye-level views (client request): looking in from the arched doorway on the left wall
+# (x = 0, y -2.97..-1.73) and looking back out at it from beside the booth.
+DOORWAY_CAMERAS = [
+    ("Cam_10_tu_cua_nhin_vao", (-0.7, -2.35, 1.6), (4.5, -1.3, 1.2), 18.0),
+    ("Cam_11_nhin_ra_cua", (4.35, -0.95, 1.6), (0.0, -2.2, 1.25), 18.0),
+]
+
+
+def add_doorway_cameras(scene):
+    for name, loc, target, lens in DOORWAY_CAMERAS:
+        if name in scene.objects:
+            continue
+        data = bpy.data.cameras.new(name)
+        data.lens = lens
+        cam = bpy.data.objects.new(name, data)
+        cam.location = loc
+        cam.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
+        scene.collection.objects.link(cam)
+    fx.log("cameras: " + ", ".join(n for n, *_ in DOORWAY_CAMERAS))
+
+
 def fix_mirror_reflection(scene, room_center):
     """EEVEE only reflects what is on screen, so the mirror showed the grey-blue world instead of the room.
     A planar probe on the glass renders the true reflection; a sphere probe and a warm neutral world
@@ -968,6 +989,7 @@ def main():
     room_center = sum(fx.bbox_world(walls), Vector()) / 2 if walls else Vector()
     mount_mirror_bulbs(scene, room_center)
     fix_mirror_reflection(scene, room_center)
+    add_doorway_cameras(scene)
 
     base, ext = os.path.splitext(args.blend)
     target = f"{base}_{args.palette}{ext}"
