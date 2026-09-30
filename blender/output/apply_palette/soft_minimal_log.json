@@ -68,7 +68,7 @@
  "art 2: ['A_Frame2_Photo'] -> PB_Plaster_Relief",
  "frame 3: ['A_Frame3_Border'] -> PB_Oak_Frame",
  "art 3: ['A_Frame3_Photo'] -> PB_Plaster_Relief",
- "minimal decor: plaster table, tiered pendant, cove light, plaster art",
+ "minimal decor: tiered pendant, cove light, plaster art",
  "mirror bulbs: 26 globe bulbs on brass sockets, ring r=0.532 m on the frame (frame r=0.565, glass r=0.500), 0 skipped at the vanity top",
  "mirror: planar reflection probe 1.00 m",
  "world: warm neutral instead of grey-blue",
