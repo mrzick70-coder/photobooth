@@ -2,8 +2,8 @@
   "extraKnownMarketplaces": {
     "photobooth-tools": {
       "source": {
-        "source": "github",
-        "repo": "mrzick70-coder/chat",
+        "source": "git",
+        "url": "https://github.com/mrzick70-coder/chat.git",
         "ref": "claude/laughing-albattani-6iszfl"
       }
     }
