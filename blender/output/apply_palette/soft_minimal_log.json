@@ -1,6 +1,7 @@
 [
  "palette soft_minimal",
  "render: BLENDER_EEVEE, AgX / AgX - Medium High Contrast, exposure 0.0",
+ "cycles: 128 samples + denoise on OPTIX: NVIDIA GeForce RTX 2080 Ti; 19 lamps hidden from reflections",
  "light on: Room_Pendant1_Light",
  "light on: Room_Pendant2_Light",
  "light on: Room_Downlight1_Light",
