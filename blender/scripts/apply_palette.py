@@ -657,12 +657,14 @@ def add_minimal_decor(scene, light_color):
 # Kidney bouclé sofa (client reference photo): bean-shaped seat, a curved back that wraps the seat and
 # steps down towards the right end, a rolled bolster arm on the left. No loose cushions.
 KIDNEY = {
-    "arc_radius": 1.0,      # seat centreline radius; the centre of curvature sits in front of the sofa
-    "half_angle": 30.0,     # degrees either side of the middle -> ~1.64 m wide with the round ends
-    "seat": (0.64, 0.40),   # seat depth x height (m)
-    "back": (0.26, 0.60),   # backrest thickness; its bottom is buried in the seat
-    "back_top": 0.76,       # backrest top above the floor
-    "arm_radius": 0.16,     # rolled arm bolster
+    "arc_radius": 0.85,     # seat centreline radius; the centre of curvature sits in front of the sofa
+    "half_angle": 26.0,     # degrees either side of the middle
+    "seat": (0.62, 0.42),   # seat depth x height (m)
+    "back_t": 0.22,         # thickness of the rolled back that wraps round into both arms
+    "back_top": 0.70,       # back height in the middle
+    "arm_top": 0.50,        # the roll lowers towards the arm ends
+    "wrap": 100.0,          # degrees the back wraps round each seat end; the seat front stays proud
+    "left_gap": 0.05,       # clearance to the side wall
 }
 
 
@@ -722,6 +724,8 @@ def soft_block(name, outline, z0, z1, bevel, coll, top_fn=None):
 
 
 def build_kidney_sofa(scene):
+    """Client reference (Julep-style): a crescent seat hugged by one rolled back that wraps symmetrically
+    round both ends into low arms, all deep-rounded boucle."""
     old = scene.objects.get("A_Sofa_Cloud")
     if old is None:
         fx.log("kidney sofa: A_Sofa_Cloud not found, skipped")
@@ -736,48 +740,65 @@ def build_kidney_sofa(scene):
 
     k = KIDNEY
     seat_d, seat_h = k["seat"]
-    back_t, back_h = k["back"]
-    r_seat = k["arc_radius"]
-    r_back = r_seat + seat_d / 2 - back_t / 2 + 0.02
-    cx = (lo.x + hi.x) / 2
-    cy = hi.y - 0.02 - (r_back + back_t / 2)  # centre of curvature, in front of the sofa
+    bt = k["back_t"]
+    r = k["arc_radius"]
     ha = math.radians(k["half_angle"])
+    ring = seat_d / 2 + bt / 2 - 0.05  # back centreline distance from the seat centreline (overlaps the seat)
+    cy = hi.y - 0.02 - (r + ring + bt / 2)  # centre of curvature, in front; the back touches the wall line
 
-    def arc(r, a0, a1, n=40):
-        return [(cx + r * math.sin(a0 + (a1 - a0) * i / (n - 1)), cy + r * math.cos(a0 + (a1 - a0) * i / (n - 1)))
-                for i in range(n)]
+    def pt(rad, a):
+        return (rad * math.sin(a), cy + rad * math.cos(a))
 
-    seat = soft_block("PB_Kidney_Seat", stadium_outline(arc(r_seat, -ha, ha), seat_d / 2),
-                      0.0, seat_h, 0.14, coll)
+    n = 41
+    seat_line = [pt(r, -ha + 2 * ha * i / (n - 1)) for i in range(n)]
+    seat = soft_block("PB_Kidney_Seat", stadium_outline(seat_line, seat_d / 2), 0.0, seat_h, 0.18, coll)
 
-    # Back wraps the seat from the left arm and steps down over the right third.
-    b0, b1 = -ha, ha * 0.92
-    top = k["back_top"]
+    # Back centreline: outer arc plus a partial circle round each seat end, so the roll becomes the arms.
+    wrap = math.radians(k["wrap"])
+    m = 18
 
-    def back_top(co):
+    def cap(a, sign):
+        ex, ey = pt(r, a)
+        out = math.atan2(math.cos(a), math.sin(a))
+        return [(ex + ring * math.cos(out - sign * wrap * j / m), ey + ring * math.sin(out - sign * wrap * j / m))
+                for j in range(1, m + 1)]
+
+    start = cap(-ha, -1.0)[::-1]
+    arc = [pt(r + ring, -ha + 2 * ha * i / (n - 1)) for i in range(n)]
+    end = cap(ha, 1.0)
+    path = start + arc + end
+    cum = [0.0]
+    for p0, p1 in zip(path, path[1:]):
+        cum.append(cum[-1] + math.dist(p0, p1))
+    cap_len = cum[len(start)]
+    total = cum[-1]
+    top, arm = k["back_top"], k["arm_top"]
+
+    def height_at(s):
+        u = s / cap_len if s < cap_len else (total - s) / cap_len if s > total - cap_len else 1.0
+        return arm + (top - arm) * (1 - math.cos(math.pi * min(max(u, 0.0), 1.0))) / 2
+
+    def shape(co):
         if co.z <= seat_h:
             return co.z
-        a = math.atan2(co.x - cx, co.y - cy)
-        t = min(max((a - b0) / (b1 - b0), 0.0), 1.0)
-        taper = 1.0 if t < 0.55 else 1.0 - 0.6 * ((t - 0.55) / 0.45) ** 1.6
-        return seat_h + (co.z - seat_h) * taper
+        i = min(range(len(path)), key=lambda j: (path[j][0] - co.x) ** 2 + (path[j][1] - co.y) ** 2)
+        return seat_h + (co.z - seat_h) * (height_at(cum[i]) - seat_h) / (top - seat_h)
 
-    back = soft_block("PB_Kidney_Back", stadium_outline(arc(r_back, b0, b1), back_t / 2),
-                      seat_h - 0.2, top, back_t / 2 - 0.01, coll, back_top)
+    # The roll is the sofa's outer shell, so it runs down to the floor like the seat.
+    back = soft_block("PB_Kidney_Back", stadium_outline(path, bt / 2), 0.0, top, bt / 2 - 0.01, coll, shape)
 
-    # Rolled arm: a bolster from the back to the front of the seat at the left end.
-    ar = k["arm_radius"]
-    a_arm = -ha
-    ux, uy = math.sin(a_arm), math.cos(a_arm)
-    r0, r1 = r_back, r_seat - seat_d / 2 + ar
-    arm_line = [(cx + ux * (r0 + (r1 - r0) * i / 7), cy + uy * (r0 + (r1 - r0) * i / 7)) for i in range(8)]
-    arm = soft_block("PB_Kidney_Arm", stadium_outline(arm_line, ar), seat_h - 0.2, top - 0.08, ar - 0.01, coll)
-
-    for o in (seat, back, arm):
+    parts = (seat, back)
+    for o in parts:
         o.data.materials.append(mat)
-    slo, shi = fx.bbox_world([seat, back, arm])
-    fx.log(f"kidney sofa: {shi.x - slo.x:.2f} m wide, {shi.y - slo.y:.2f} m deep, back {top} m, "
-           f"seat {seat_h} m; replaces A_Sofa_Cloud")
+    bpy.context.view_layer.update()
+    blo, bhi = fx.bbox_world(parts)
+    dx = (lo.x - 0.03 + k["left_gap"] - 0.05) - blo.x
+    for o in parts:
+        o.location.x += dx
+    bpy.context.view_layer.update()
+    blo, bhi = fx.bbox_world(parts)
+    fx.log(f"kidney sofa: {bhi.x - blo.x:.2f} m wide (x {blo.x:.2f}..{bhi.x:.2f}), {bhi.y - blo.y:.2f} m deep, "
+           f"back {top} m, arms {arm} m, seat {seat_h} m; replaces A_Sofa_Cloud")
 
 
 def apply_review_fixes(scene, pal):
