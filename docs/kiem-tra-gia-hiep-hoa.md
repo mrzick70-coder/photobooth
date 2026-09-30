@@ -57,7 +57,7 @@ còn lại là giá Hà Nội hoặc giá bán online toàn quốc.
 | | **TỔNG** | | | **≈ 84** | **≈ 130** |
 | | + 10 % dự phòng | | | ≈ 92 | ≈ 143 |
 
-**Mức độ chắc chắn của tổng:** phần ✅ ≈ 25–33 tr, phần ◐ ≈ 25–39 tr, phần ✎ (tự ước lượng) ≈ 34–58 tr ≈ **40 % tổng tiền**.
+**Mức độ chắc chắn của tổng:** phần ✅ ≈ 25–33 tr, phần ◐ ≈ 25–42 tr, phần ✎ (tự ước lượng) ≈ 33–55 tr ≈ **40 % tổng tiền**.
 Riêng vỏ buồng (B) hoàn toàn là ước lượng – nên xin báo giá xưởng mộc trước tiên.
 
 So với dự toán cũ (~61 tr, +10 % ≈ 67 tr): giá tra được **cao hơn khoảng 20–40 tr**.
