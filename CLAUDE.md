@@ -116,3 +116,23 @@ Ngân sách 150 triệu (PDF): không cần cho việc dựng cảnh.
 `docs/du-toan-mat-bang.md` = dự toán mặt bằng + vỏ buồng (trừ thiết bị điện tử) phương án TIẾT KIỆM: tổng ~55–95 triệu (thường ~67, +10% dự phòng ≈ 60–105); buồng dùng 3 mặt tường phòng làm vách, chỉ dựng mặt tiền + nóc + vách ngăn (~16–29 tr). (người dùng chọn: rẻ nhất mà vẫn ra concept; phòng 6×3 được NGĂN RA từ mặt bằng lớn hơn nên dựng vách thạch cao 3 phía (tường trong cùng sau sofa là tường sẵn có) + trần thạch cao bắt buộc để lắp đèn âm trần: ~37–64 triệu (+10% dự phòng ≈ 41–70), thường ~45; bản đầy đủ ~80–150). Khi đổi thiết kế nội thất, cập nhật file này.
 `docs/` chứa chữ trích từ file HTML/PDF của người dùng (`thiet-ke.txt` = concept vintage gốc, `vat-lieu.txt` = V2 Minimal Cinema, `sky-cinema.txt` = V3). Trích lại bằng `python scripts/extract_design.py <file.html> <ra.txt>` (HTML đóng gói lồng nhau; PDF thì dùng `pdftotext`, dấu tiếng Việt có thể mất).
 `docs/quyet-dinh-thiet-ke.md` = nhật ký quyết định. `README.md` = hướng dẫn cho người dùng.
+
+## Render qua runner GitHub Actions (nhánh `claude/modest-galileo-vtuecz`) – ĐANG DÙNG
+Phiên Claude trên cloud không chạy được Blender, nên render bằng máy của người dùng qua runner tự host:
+- `.github/workflows/blender.yml` chạy trên runner nhãn `blender` (máy Windows của người dùng, runner ở
+  `C:\actions-runner\actions-runner`, bật bằng `./run.cmd`). Nó chạy script ghi trong `blender/run.txt`
+  lên file cảnh ở biến repo `BLEND_FILE`, rồi commit ảnh vào `blender/output/<script>/` (commit `[skip ci]`).
+- Push có đụng `blender/scripts/**` hoặc `blender/run.txt` là tự render. Chờ commit
+  "Add Blender output from run N" trên nhánh rồi `git pull`.
+- `blender/scripts/apply_palette.py` dựng concept hiện tại (`DEFAULT_PALETTE`, đang là `soft_minimal`:
+  tường trắng ấm, sàn SPC gỗ sồi sáng lát so le, sofa bouclé dáng Julep, bàn thạch cao, đèn thả vải,
+  đèn hắt trần, gương đèn bulb có probe phản chiếu) và lưu `<tên>_<palette>.blend` cạnh file gốc,
+  không ghi đè file gốc. EEVEE + AgX, đèn ~3000K.
+- Những yêu cầu mới nhất của người dùng trong luồng này (sàn vân gỗ SPC, AgX, sofa Julep, bỏ quầy vé,
+  bỏ đèn cầu/đèn tuýp/thảm/chậu cây/kệ QR) được ưu tiên hơn các ghi chú cũ phía trên về pipeline
+  `build_scene.py`.
+
+## Quy tắc gửi ảnh render
+- Mỗi lần runner render xong: kéo ảnh về và GỬI NGAY cho người dùng bằng `SendUserFile`
+  (`display: "render"`), không chờ nhắc. Gửi các góc chính (Cam_03, Cam_02, Cam_04, Cam_08, Cam_s8,
+  Cam_s2, Cam_s7 và góc liên quan đến thay đổi), xem ảnh trước, nói một dòng đã đổi gì và còn gì chưa ổn.
