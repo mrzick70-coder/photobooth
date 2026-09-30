@@ -1,0 +1,29 @@
+{
+  "ten": "Photobooth 3x6m - mẫu",
+  "ngan_sach": 50000000,
+  "du_phong": 0.10,
+  "_huong_dan": "uu_tien: 1 = lên ảnh nhiều nhất ... 5 = không lên ảnh. bat_buoc=false: được phép bỏ. cho_phep_nb: có đáng lên mức nổi bật không. muc: ép cố định một mức (TK/CB/NB/KHONG). ma phải có trong bang-gia.csv.",
+  "hang_muc": [
+    {"ma": "vach-thach-cao-cach-am", "nhom": "Kết cấu", "khoi_luong": 27, "uu_tien": 4, "ghi_chu": "2 cạnh ~9m x cao 3m"},
+    {"ma": "cua-di-mdf", "nhom": "Kết cấu", "khoi_luong": 1, "uu_tien": 5, "bat_buoc": false},
+    {"ma": "tran-thach-cao-khe-hat", "nhom": "Kết cấu", "khoi_luong": 18, "uu_tien": 2},
+    {"ma": "ba-son-noi-that", "nhom": "Kết cấu", "khoi_luong": 70, "uu_tien": 2, "ghi_chu": "tường 52m² + trần 18m²"},
+    {"ma": "san-spc-go-cn", "nhom": "Kết cấu", "khoi_luong": 19, "uu_tien": 1, "cho_phep_nb": true},
+    {"ma": "can-nen", "nhom": "Kết cấu", "khoi_luong": 18, "uu_tien": 5, "bat_buoc": false, "ghi_chu": "chỉ khi nền lồi lõm"},
+    {"ma": "dien-tron-goi", "nhom": "Điện + đèn", "khoi_luong": 1, "uu_tien": 5},
+    {"ma": "led-day-hat-3000k", "nhom": "Điện + đèn", "khoi_luong": 18, "uu_tien": 1, "cho_phep_nb": true},
+    {"ma": "downlight-3000k", "nhom": "Điện + đèn", "khoi_luong": 8, "uu_tien": 3},
+    {"ma": "den-can-cau", "nhom": "Điện + đèn", "khoi_luong": 1, "uu_tien": 2, "bat_buoc": false},
+    {"ma": "dieu-hoa-12000btu", "nhom": "Điều hòa", "khoi_luong": 1, "uu_tien": 5},
+    {"ma": "rem-voan-ray", "nhom": "Rèm", "khoi_luong": 6, "uu_tien": 1, "cho_phep_nb": true, "ghi_chu": "backdrop 3m + phân khu 3m"},
+    {"ma": "sofa-bang-kem", "nhom": "Nội thất", "khoi_luong": 1, "uu_tien": 1, "cho_phep_nb": true},
+    {"ma": "ghe-luoi-togo", "nhom": "Nội thất", "khoi_luong": 1, "uu_tien": 2, "bat_buoc": false},
+    {"ma": "ban-tra-tron", "nhom": "Nội thất", "khoi_luong": 1, "uu_tien": 2},
+    {"ma": "tham-long-kem", "nhom": "Nội thất", "khoi_luong": 1, "uu_tien": 2},
+    {"ma": "guong-toan-than-den", "nhom": "Nội thất", "khoi_luong": 1, "uu_tien": 3},
+    {"ma": "quay-le-tan-mini", "nhom": "Nội thất", "khoi_luong": 1, "uu_tien": 4, "bat_buoc": false},
+    {"ma": "ke-treo-tuong", "nhom": "Nội thất", "khoi_luong": 1, "uu_tien": 4},
+    {"ma": "bien-ten-trong-nha", "nhom": "Decor + nhận diện", "khoi_luong": 1, "uu_tien": 3, "bat_buoc": false},
+    {"ma": "decor-cay-binh", "nhom": "Decor + nhận diện", "khoi_luong": 1, "uu_tien": 2}
+  ]
+}
