@@ -83,6 +83,7 @@ PALETTES = {
         "review_fixes": True, "sofa_model": "kidney", "bench": False, "pay_point": False,
         "neon_heart": False, "minimal_decor": True,
         "light_color": (1.0, 0.8, 0.6),  # ~3000K: 2700K turns warm white walls peach
+        "engine": "CYCLES",  # path tracing: true bounce light and mirror reflections
         "exposure": 0.0, "downlight_boost": 1.0,
     },
 }
@@ -889,6 +890,49 @@ def fix_mirror_reflection(scene, room_center):
             fx.log("world: warm neutral instead of grey-blue")
 
 
+CYCLES_SAMPLES = 128
+
+
+def setup_cycles(scene):
+    """Cycles on the client's GPU with denoising. Light objects are hidden from glossy rays so the mirror
+    shows the real fixtures (emissive bulbs, downlight faces), not the helper lamps behind them."""
+    scene.render.engine = "CYCLES"
+    cyc = scene.cycles
+    cyc.samples = CYCLES_SAMPLES
+    cyc.use_adaptive_sampling = True
+    cyc.use_denoising = True
+    if hasattr(cyc, "denoiser"):
+        cyc.denoiser = "OPENIMAGEDENOISE"
+    if hasattr(cyc, "denoising_use_gpu"):
+        cyc.denoising_use_gpu = True
+    cyc.max_bounces = 8
+    cyc.glossy_bounces = 6
+    chosen = "CPU"
+    try:
+        prefs = bpy.context.preferences.addons["cycles"].preferences
+        for kind in ("OPTIX", "CUDA", "HIP", "ONEAPI", "METAL"):
+            try:
+                prefs.compute_device_type = kind
+            except TypeError:
+                continue
+            prefs.refresh_devices() if hasattr(prefs, "refresh_devices") else prefs.get_devices()
+            gpus = [d for d in prefs.devices if d.type == kind]
+            if gpus:
+                for d in prefs.devices:
+                    d.use = d.type == kind
+                chosen = f"{kind}: " + ", ".join(d.name for d in gpus)
+                break
+    except Exception as exc:  # no cycles prefs in this build
+        chosen = f"CPU ({exc})"
+    cyc.device = "GPU" if not chosen.startswith("CPU") else "CPU"
+    hidden = 0
+    for o in scene.objects:
+        if o.type == "LIGHT" and hasattr(o, "visible_glossy"):
+            o.visible_glossy = False
+            hidden += 1
+    fx.log(f"cycles: {cyc.samples} samples + denoise on {chosen}; {hidden} lamps hidden from reflections")
+
+
 def visible_blind(scene):
     return next((o for o in scene.objects
                  if o.name.startswith("F_Rem_") and o.name.endswith("_Spread") and not o.hide_render), None)
@@ -905,6 +949,8 @@ def main():
     fx.log(f"palette {args.palette}")
 
     fx.fix_render(scene, pal.get("exposure", EXPOSURE))
+    if pal.get("engine") == "CYCLES":
+        setup_cycles(scene)
     fix_visibility(scene)
     ensure_visible(scene, "Room_Ceiling")
     boost_booth_flash(scene)
@@ -934,7 +980,7 @@ def main():
         scene.render.resolution_percentage = 100 if FULL_RES else 50
         scene.render.image_settings.file_format = "JPEG"
         scene.render.image_settings.quality = 95 if FULL_RES else 88
-        if FULL_RES and hasattr(scene, "eevee"):
+        if FULL_RES and scene.render.engine != "CYCLES" and hasattr(scene, "eevee"):
             scene.eevee.taa_render_samples = 128
         blind = visible_blind(scene)
         blind_for_cam = {cam: rem for rem, _, cam in BLINDS}
