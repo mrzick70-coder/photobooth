@@ -596,7 +596,7 @@ def cylinder(name, center, r0, r1, z0, z1, mat, coll, caps=True, segments=48):
 
 
 def add_minimal_decor(scene, light_color):
-    """Soft-minimal styling: plaster table, tiered fabric pendant, cove light, plaster relief art."""
+    """Soft-minimal styling: tiered fabric pendant, cove light, plaster relief art."""
     coll = bpy.data.collections.get("PB_Minimal") or bpy.data.collections.new("PB_Minimal")
     if coll.name not in scene.collection.children:
         scene.collection.children.link(coll)
@@ -606,13 +606,11 @@ def add_minimal_decor(scene, light_color):
     front = slo.y
 
 
-    # Round plaster pedestal table in front of the sofa (~40% of the sofa length).
-    plaster = mat_plaster("PB_Plaster_Table", "#EDE7DE")
+    # The plaster coffee table was removed at the client's request; the pendant keeps its place
+    # over the seating area.
+    plaster = mat_plaster("PB_Plaster_Canopy", "#EDE7DE")
     tc = (sx, front - 0.45)
-    cylinder("PB_Table_Base", tc, 0.2, 0.16, 0.012, 0.40, plaster, coll)
-    cylinder("PB_Table_Top", tc, 0.33, 0.33, 0.40, 0.44, plaster, coll)
-
-    # Tiered fabric pendant over the table: the room's one decorative light.
+    # Tiered fabric pendant over the seating area: the room's one decorative light.
     fabric, bsdf = fx.new_material("PB_Fabric_Shade")
     bsdf.inputs["Base Color"].default_value = fx.hex_rgba("#F4EFE7")
     bsdf.inputs["Roughness"].default_value = 0.9
@@ -654,7 +652,7 @@ def add_minimal_decor(scene, light_color):
             fx.assign([border], oak, f"frame {i}")
         if photo:
             fx.assign([photo], relief, f"art {i}")
-    fx.log("minimal decor: plaster table, tiered pendant, cove light, plaster art")
+    fx.log("minimal decor: tiered pendant, cove light, plaster art")
 
 
 # Kidney bouclé sofa (client reference photo): bean-shaped seat, a curved back that wraps the seat and
