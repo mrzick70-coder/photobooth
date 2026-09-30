@@ -24,9 +24,9 @@ Phòng 6 × 3 m, trần 3 m, phòng được ngăn từ mặt bằng lớn (vác
 | | 3 tranh thạch cao nổi | 0,9 | 1,5 | 4,5 |
 | | Chữ logo mica đen | 0,5 | 1,0 | 2,0 |
 | Khác | Vận chuyển, phế thải, gia cố treo kệ/gương, vật tư phụ | 1,5 | 2,5 | 4,5 |
-| **Cộng** | | **45,8** | **64,4** | **92,1** |
+| **Cộng** | | **45,8** | **63,9** | **92,1** |
 | Dự phòng 10% | | 4,6 | 6,4 | 9,2 |
-| **Tổng** | | **~50** | **~71** | **~101** |
+| **Tổng** | | **~50** | **~70** | **~101** |
 
 Chưa gồm VAT (+8–10% nếu cần hóa đơn). Đơn vị: triệu đồng.
 
