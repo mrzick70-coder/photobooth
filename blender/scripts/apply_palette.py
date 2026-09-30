@@ -594,57 +594,8 @@ def cylinder(name, center, r0, r1, z0, z1, mat, coll, caps=True, segments=48):
     return obj
 
 
-def add_olive_tree(center, coll):
-    """Artificial olive tree in a ribbed stone-look pot (~1.8 m)."""
-    import random
-    rnd = random.Random(7)
-    pot = mat_plaster("PB_Pot_Stone", "#D8CDBE", 0.35, 18.0)
-    bark = flat_material("PB_Olive_Bark", "#4E4136", 0.8)
-    leaf, bsdf = fx.new_material("PB_Olive_Leaf")
-    bsdf.inputs["Base Color"].default_value = fx.hex_rgba("#65714F")
-    bsdf.inputs["Roughness"].default_value = 0.6
-    fx.set_input(bsdf, ["Subsurface Weight", "Subsurface"], 0.15)
-    x, y = center
-    cylinder("PB_Olive_Pot", (x, y), 0.17, 0.21, 0.0, 0.48, pot, coll)
-    cylinder("PB_Olive_Soil", (x, y), 0.19, 0.19, 0.44, 0.46, bark, coll)
-    tips = []
-    for i, (dx, dy, top) in enumerate(((0.0, 0.0, 1.35), (0.14, 0.05, 1.6), (-0.12, -0.04, 1.55))):
-        base = Vector((x + dx * 0.2, y + dy * 0.2, 0.45))
-        tip = Vector((x + dx, y + dy, top))
-        me = bpy.data.meshes.new(f"PB_Olive_Trunk{i}")
-        bm = bmesh.new()
-        length = (tip - base).length
-        bmesh.ops.create_cone(bm, cap_ends=True, segments=10, radius1=0.028 - i * 0.006, radius2=0.012,
-                              depth=length)
-        bm.to_mesh(me)
-        bm.free()
-        me.materials.append(bark)
-        trunk = bpy.data.objects.new(f"PB_Olive_Trunk{i}", me)
-        trunk.location = (base + tip) / 2
-        trunk.rotation_euler = (tip - base).to_track_quat("Z", "Y").to_euler()
-        coll.objects.link(trunk)
-        tips.append(tip)
-    me = bpy.data.meshes.new("PB_Olive_Leaves")
-    bm = bmesh.new()
-    for tip in tips:
-        for _ in range(320):
-            c = tip + Vector((rnd.gauss(0, 0.12), rnd.gauss(0, 0.12), rnd.gauss(0.04, 0.1)))
-            ret = bmesh.ops.create_icosphere(bm, subdivisions=1, radius=rnd.uniform(0.022, 0.034))
-            vs = ret["verts"]
-            bmesh.ops.scale(bm, vec=(1.0, 0.35, 0.18), verts=vs)  # long, narrow olive leaves
-            rot = Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1))).to_track_quat("X", "Z")
-            bmesh.ops.rotate(bm, cent=(0, 0, 0), matrix=rot.to_matrix(), verts=vs)
-            bmesh.ops.translate(bm, vec=c, verts=vs)
-    bm.to_mesh(me)
-    bm.free()
-    for poly in me.polygons:
-        poly.use_smooth = True
-    me.materials.append(leaf)
-    coll.objects.link(bpy.data.objects.new("PB_Olive_Leaves", me))
-
-
 def add_minimal_decor(scene, light_color):
-    """Soft-minimal styling: rug, plaster table, tiered fabric pendant, cove light, olive tree, plaster art."""
+    """Soft-minimal styling: plaster table, tiered fabric pendant, cove light, plaster relief art."""
     coll = bpy.data.collections.get("PB_Minimal") or bpy.data.collections.new("PB_Minimal")
     if coll.name not in scene.collection.children:
         scene.collection.children.link(coll)
@@ -653,9 +604,6 @@ def add_minimal_decor(scene, light_color):
     sx = (slo.x + shi.x) / 2
     front = slo.y
 
-    # Cream rug under the front of the sofa, clear of the entrance walkway (y > -1.7).
-    rug = mat_plaster("PB_Rug_Wool", "#ECE5D9", 0.5, 60.0)
-    box("PB_Rug", (sx - 0.85, front - 0.95, 0.0), (sx + 0.85, front + 0.25, 0.012), rug, coll)
 
     # Round plaster pedestal table in front of the sofa (~40% of the sofa length).
     plaster = mat_plaster("PB_Plaster_Table", "#EDE7DE")
@@ -687,9 +635,6 @@ def add_minimal_decor(scene, light_color):
                 o.data.color = light_color
                 o.data.energy *= 0.35
 
-    # Olive tree beside the sofa against the left wall, as in the inspiration. The entrance wall is
-    # where most cameras stand, and the doorway starts at y = -1.73.
-    add_olive_tree((0.25, -1.35), coll)
 
     # Wall art above the sofa becomes cream plaster relief in light oak frames.
     oak = flat_material("PB_Oak_Frame", "#C9B08E", 0.5)
@@ -708,7 +653,7 @@ def add_minimal_decor(scene, light_color):
             fx.assign([border], oak, f"frame {i}")
         if photo:
             fx.assign([photo], relief, f"art {i}")
-    fx.log("minimal decor: rug, plaster table, tiered pendant, cove light, olive tree, plaster art")
+    fx.log("minimal decor: plaster table, tiered pendant, cove light, plaster art")
 
 
 # Kidney bouclé sofa (client reference photo): bean-shaped seat, a curved back that wraps the seat and
@@ -903,6 +848,47 @@ def apply_review_fixes(scene, pal):
     add_entrance_wall(scene, pal)
 
 
+def fix_mirror_reflection(scene, room_center):
+    """EEVEE only reflects what is on screen, so the mirror showed the grey-blue world instead of the room.
+    A planar probe on the glass renders the true reflection; a sphere probe and a warm neutral world
+    cover everything else that reflects or shows through the doorway."""
+    glass = scene.objects.get("D_Mirror_Glass")
+    if glass:
+        lo, hi = fx.bbox_world([glass])
+        center, dims = (lo + hi) / 2, hi - lo
+        axis = min(range(3), key=lambda i: dims[i])
+        normal = Vector((0.0, 0.0, 0.0))
+        normal[axis] = 1.0 if room_center[axis] > center[axis] else -1.0
+        size = max(dims) / 2
+        for kind in ("PLANE", "PLANAR"):  # Blender 4.2+ / older name
+            try:
+                probe = bpy.data.lightprobes.new("PB_Mirror_Probe", kind)
+                break
+            except TypeError:
+                continue
+        obj = bpy.data.objects.new("PB_Mirror_Probe", probe)
+        obj.location = center + normal * (dims[axis] / 2 + 0.001)
+        obj.rotation_euler = normal.to_track_quat("Z", "Y").to_euler()
+        obj.scale = (size * 1.05, size * 1.05, 1.0)
+        scene.collection.objects.link(obj)
+        fx.log(f"mirror: planar reflection probe {size * 2:.2f} m")
+    for kind in ("SPHERE", "CUBEMAP"):
+        try:
+            sphere = bpy.data.lightprobes.new("PB_Room_Probe", kind)
+            break
+        except TypeError:
+            continue
+    sobj = bpy.data.objects.new("PB_Room_Probe", sphere)
+    sobj.location = (room_center.x, room_center.y, 1.4)
+    scene.collection.objects.link(sobj)
+    world = scene.world
+    if world and world.use_nodes:
+        bg = next((n for n in world.node_tree.nodes if n.bl_idname == "ShaderNodeBackground"), None)
+        if bg:
+            bg.inputs["Color"].default_value = fx.hex_rgba("#E9E3DA")
+            fx.log("world: warm neutral instead of grey-blue")
+
+
 def visible_blind(scene):
     return next((o for o in scene.objects
                  if o.name.startswith("F_Rem_") and o.name.endswith("_Spread") and not o.hide_render), None)
@@ -935,7 +921,9 @@ def main():
         recolor(bar, darker(color, 0.7))
     apply_extras(scene, pal)
     walls = [scene.objects[n] for n in fx.ROLES["walls"] if n in scene.objects]
-    mount_mirror_bulbs(scene, sum(fx.bbox_world(walls), Vector()) / 2 if walls else Vector())
+    room_center = sum(fx.bbox_world(walls), Vector()) / 2 if walls else Vector()
+    mount_mirror_bulbs(scene, room_center)
+    fix_mirror_reflection(scene, room_center)
 
     base, ext = os.path.splitext(args.blend)
     target = f"{base}_{args.palette}{ext}"
