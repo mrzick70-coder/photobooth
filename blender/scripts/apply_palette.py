@@ -477,36 +477,93 @@ def add_entrance_wall(scene, pal):
     coll.objects.link(cam)
 
 
-def mat_oak():
-    """Light oak vinyl plank: 1.2 m x 0.19 m boards in a staggered pattern with a soft grain."""
+def mat_oak(plank_len=1.22, plank_w=0.18, seam=0.0012):
+    """SPC vinyl plank laid along the long wall with a random stagger per row, like real installs:
+    1220 x 180 mm boards, each row shifted by a random amount, each board with its own tone and grain."""
     mat, bsdf = fx.new_material("PB_Oak_Plank")
     nodes, links = mat.node_tree.nodes, mat.node_tree.links
+
+    def feed(sock, v):
+        if isinstance(v, (int, float)):
+            sock.default_value = v
+        else:
+            links.new(v, sock)
+
+    def math_node(op, a, b=None, c=None):
+        n = nodes.new("ShaderNodeMath")
+        n.operation = op
+        for i, v in enumerate((a, b, c)):
+            if v is not None:
+                feed(n.inputs[i], v)
+        return n.outputs[0]
+
+    def white_noise(vec=None, w=None):
+        n = nodes.new("ShaderNodeTexWhiteNoise")
+        if w is not None:
+            n.noise_dimensions = "1D"
+            links.new(w, n.inputs["W"])
+        else:
+            n.noise_dimensions = "3D"
+            links.new(vec, n.inputs["Vector"])
+        return n.outputs["Value"]
+
+    def combine(x, y, z=0.0):
+        n = nodes.new("ShaderNodeCombineXYZ")
+        for i, v in enumerate((x, y, z)):
+            feed(n.inputs[i], v)
+        return n.outputs[0]
+
+    def mix(fac, a, b, blend="MIX"):
+        n = nodes.new("ShaderNodeMix")
+        n.data_type, n.blend_type = "RGBA", blend
+        feed(n.inputs[0], fac)
+        for idx, v in ((6, a), (7, b)):
+            if isinstance(v, tuple):
+                n.inputs[idx].default_value = v
+            else:
+                links.new(v, n.inputs[idx])
+        return n.outputs[2]
+
     geo = nodes.new("ShaderNodeNewGeometry")
-    brick = nodes.new("ShaderNodeTexBrick")
-    brick.offset, brick.offset_frequency = 0.37, 1
-    brick.inputs["Color1"].default_value = fx.hex_rgba("#D9C6AB")
-    brick.inputs["Color2"].default_value = fx.hex_rgba("#CDB797")
-    brick.inputs["Mortar"].default_value = fx.hex_rgba("#B39B7E")
-    brick.inputs["Scale"].default_value = 1.0
-    brick.inputs["Mortar Size"].default_value = 0.0025
-    brick.inputs["Brick Width"].default_value = 1.2
-    brick.inputs["Row Height"].default_value = 0.19
-    links.new(geo.outputs["Position"], brick.inputs["Vector"])
-    grain = nodes.new("ShaderNodeTexWave")
-    grain.wave_type, grain.bands_direction = "BANDS", "Y"
-    grain.inputs["Scale"].default_value = 18.0
-    grain.inputs["Distortion"].default_value = 6.0
-    grain.inputs["Detail"].default_value = 3.0
-    links.new(geo.outputs["Position"], grain.inputs["Vector"])
-    mix = nodes.new("ShaderNodeMix")
-    mix.data_type, mix.blend_type = "RGBA", "MULTIPLY"
-    mix.inputs[0].default_value = 0.12
-    links.new(brick.outputs["Color"], mix.inputs[6])
-    links.new(grain.outputs["Color"], mix.inputs[7])
-    links.new(mix.outputs[2], bsdf.inputs["Base Color"])
+    sep = nodes.new("ShaderNodeSeparateXYZ")
+    links.new(geo.outputs["Position"], sep.inputs[0])
+    x, y = sep.outputs["X"], sep.outputs["Y"]
+
+    row = math_node("FLOOR", math_node("DIVIDE", y, plank_w))
+    shift = white_noise(w=row)                                  # random stagger per row
+    xs = math_node("MULTIPLY_ADD", shift, plank_len, x)
+    along = math_node("DIVIDE", xs, plank_len)
+    col = math_node("FLOOR", along)
+    u = math_node("FRACT", along)
+    v = math_node("FRACT", math_node("DIVIDE", y, plank_w))
+    du = math_node("MULTIPLY", math_node("MINIMUM", u, math_node("SUBTRACT", 1.0, u)), plank_len)
+    dv = math_node("MULTIPLY", math_node("MINIMUM", v, math_node("SUBTRACT", 1.0, v)), plank_w)
+    groove = math_node("LESS_THAN", math_node("MINIMUM", du, dv), seam)
+
+    board = white_noise(vec=combine(col, row))                  # one random value per board
+    tone = nodes.new("ShaderNodeValToRGB")
+    tone.color_ramp.elements[0].color = fx.hex_rgba("#CDB797")
+    tone.color_ramp.elements[1].color = fx.hex_rgba("#DDCBB1")
+    tone.color_ramp.elements.new(0.5).color = fx.hex_rgba("#D4BFA2")
+    links.new(board, tone.inputs["Fac"])
+
+    # Grain runs along each board; offsetting by the board value stops it lining up across seams.
+    grain = nodes.new("ShaderNodeTexNoise")
+    grain.inputs["Scale"].default_value = 1.0
+    grain.inputs["Detail"].default_value = 8.0
+    grain.inputs["Roughness"].default_value = 0.6
+    links.new(combine(math_node("MULTIPLY", xs, 0.6),
+                      math_node("MULTIPLY_ADD", board, 40.0, math_node("MULTIPLY", y, 60.0))),
+              grain.inputs["Vector"])
+    color = mix(0.35, tone.outputs["Color"], grain.outputs["Color"], "MULTIPLY")
+    color = mix(groove, color, fx.hex_rgba("#8E7A62"))
+    links.new(color, bsdf.inputs["Base Color"])
     bsdf.inputs["Roughness"].default_value = 0.42
-    add_bump = fx.add_bump
-    add_bump(mat, bsdf, brick, 0.15, 0.002)
+    bump = nodes.new("ShaderNodeBump")
+    bump.inputs["Strength"].default_value = 0.4
+    bump.inputs["Distance"].default_value = 0.001
+    links.new(math_node("SUBTRACT", 1.0, groove), bump.inputs["Height"])
+    links.new(bump.outputs[0], bsdf.inputs["Normal"])
     return mat
 
 
