@@ -1,0 +1,14 @@
+{
+  "extraKnownMarketplaces": {
+    "photobooth-tools": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/mrzick70-coder/chat.git",
+        "ref": "claude/laughing-albattani-6iszfl"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "photobooth@photobooth-tools": true
+  }
+}
